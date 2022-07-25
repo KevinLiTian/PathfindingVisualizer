@@ -1,21 +1,22 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    // Create Grid with boxes
     tableCreate();
+
+    // Add click event listener to all boxes
     document.querySelectorAll('.box-container').forEach((box_container) => {
         const box = box_container.children[0];
-        // Play Animation
-        box_container.addEventListener('click', () => {
-            box.style.animationPlayState = 'running';
-        });
+        if (box) {
+            // Play Animation
+            box_container.addEventListener('click', () => {
+                box.style.animationPlayState = 'running';
+            });
 
-        // Set Animation
-        box.addEventListener('animationend', () => setBoxAnimationState(box));
+            // Set Animation
+            box.addEventListener('animationend', () => setBoxAnimationState(box));
+        }
     });
 });
-
-// var rect = box_container.getBoundingClientRect();
-// console.log(rect.top, rect.left, rect.right, rect.bottom);
-// event.clientX, event.clientY
 
 /* Stop Animation and Set Animation Accordingly */
 function setBoxAnimationState(box) {
@@ -39,20 +40,32 @@ function tableCreate() {
     const grid = document.querySelector('#grid');
     const tbl = document.createElement('table');
     tbl.style.borderCollapse = 'collapse';
-    tbl.style.width = '1250px';
+    tbl.style.width = '100%';
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 21; i++) {
         const tr = tbl.insertRow();
         for (let j = 0; j < 50; j++) {
             const td = tr.insertCell();
-            td.classList.add('box-container', 'inline-float-l');
+            td.classList.add('box-container');
+
+            // Source
+            if (i === 9 && j === 5) {
+                td.style.backgroundColor = '#FFE2C8';
+            }
+
+            // Destination
+            else if (i === 9 && j === 44) {
+                td.style.backgroundColor = '#FFC7D7';
+            }
 
             // Box
-            const box = document.createElement('div');
-            box.classList.add('box', 'stretch');
-            box.dataset.animation = 'stretch';
+            else {
+                const box = document.createElement('div');
+                box.classList.add('box', 'stretch');
+                box.dataset.animation = 'stretch';
 
-            td.append(box);
+                td.append(box);
+            }
         }
     }
     grid.append(tbl);

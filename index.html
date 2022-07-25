@@ -18,9 +18,39 @@
 </head>
 
 <body>
+    <!-- Nav Section -->
+    <nav class="mb-2 p-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <h3 class="text-secondary">Pathfinding Visualizer</h3>
+                </div>
 
+                <div class="col-4 text-center">
+                    <button class="btn btn-secondary btn-lg">Visualize</button>
+                </div>
+                <div class="dropdown col-4 text-end">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Algorithm
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">DFS</a></li>
+                        <li><a class="dropdown-item" href="#">BFS</a></li>
+                        <li><a class="dropdown-item" href="#">Greedy</a></li>
+                        <li><a class="dropdown-item" href="#">A*</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Message if any -->
+    <div class="container text-center mb-3" id="message"></div>
+
+    <!-- Grid Section -->
     <section>
-        <div class="d-flex justify-content-center fix-width-lg align-items-end" id="grid"></div>
+        <div class="container" id="grid"></div>
     </section>
 
     <!-- Bootstrap JavaScript -->

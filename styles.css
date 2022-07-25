@@ -13,15 +13,6 @@
     border: 1px solid #7D9D9C;
 }
 
-.fix-width-lg {
-    min-width: 1250px;
-    height: 90vh;
-}
-
-.inline-float-l {
-    float: left;
-}
-
 /* Animation Classes */
 .stretch {
     animation-name: stretch;
