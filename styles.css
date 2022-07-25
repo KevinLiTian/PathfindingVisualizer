@@ -1,35 +1,3 @@
-.element {
-    height: 250px;
-    width: 250px;
-    margin: 0 auto;
-    background-color: red;
-    animation-name: stretch;
-    animation-duration: 1.5s;
-    animation-timing-function: ease-out;
-    animation-delay: 0;
-    animation-direction: alternate;
-    animation-iteration-count: infinite;
-    animation-fill-mode: forwards;
-    animation-play-state: running;
-}
-
-@keyframes stretch {
-    0% {
-        transform: scale(0.3);
-        background-color: red;
-        border-radius: 100%;
-    }
-
-    50% {
-        background-color: orange;
-    }
-
-    100% {
-        transform: scale(1.5);
-        background-color: yellow;
-    }
-}
-
 body,
 html {
     height: 100%;
@@ -39,4 +7,68 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.box {
+    height: 100%;
+}
+
+.box-container {
+    height: 20px;
+    width: 20px;
+    border: 1px solid #7D9D9C;
+}
+
+.stretch {
+    animation-name: stretch;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+.shrink {
+    animation-name: shrink;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+@keyframes stretch {
+    0% {
+        transform: scale(0);
+        background-color: #F0EBE3;
+        border-radius: 100%;
+    }
+
+    50% {
+        background-color: #E4DCCF;
+    }
+
+    100% {
+        transform: scale(1);
+        background-color: #7D9D9C;
+    }
+}
+
+@keyframes shrink {
+    0% {
+        transform: scale(1);
+        background-color: #7D9D9C;
+    }
+
+    50% {
+        background-color: #E4DCCF;
+    }
+
+    100% {
+        transform: scale(0);
+        background-color: #F0EBE3;
+        border-radius: 100%;
+    }
 }
