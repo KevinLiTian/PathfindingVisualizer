@@ -1,12 +1,6 @@
-body,
-html {
-    height: 100%;
-}
-
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+* {
+    padding: 0;
+    margin: 0;
 }
 
 .box {
@@ -14,11 +8,21 @@ body {
 }
 
 .box-container {
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
     border: 1px solid #7D9D9C;
 }
 
+.fix-width-lg {
+    min-width: 1250px;
+    height: 90vh;
+}
+
+.inline-float-l {
+    float: left;
+}
+
+/* Animation Classes */
 .stretch {
     animation-name: stretch;
     animation-duration: 0.5s;
@@ -39,6 +43,8 @@ body {
     animation-play-state: paused;
 }
 
+
+/* Animations */
 @keyframes stretch {
     0% {
         transform: scale(0);
@@ -51,14 +57,14 @@ body {
     }
 
     100% {
-        transform: scale(1);
+        transform: scale(1.1);
         background-color: #7D9D9C;
     }
 }
 
 @keyframes shrink {
     0% {
-        transform: scale(1);
+        transform: scale(1.1);
         background-color: #7D9D9C;
     }
 
