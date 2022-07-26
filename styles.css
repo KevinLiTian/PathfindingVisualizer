@@ -47,8 +47,8 @@
 .stretch {
   -webkit-animation-name: stretch;
           animation-name: stretch;
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
   -webkit-animation-direction: normal;
           animation-direction: normal;
   -webkit-animation-timing-function: ease-out;
@@ -64,8 +64,8 @@
 .shrink {
   -webkit-animation-name: shrink;
           animation-name: shrink;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
   -webkit-animation-direction: normal;
           animation-direction: normal;
   -webkit-animation-timing-function: ease-out;
@@ -81,8 +81,8 @@
 .search-stretch {
   -webkit-animation-name: searchStretch;
           animation-name: searchStretch;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
   -webkit-animation-direction: normal;
           animation-direction: normal;
   -webkit-animation-timing-function: ease-out;
@@ -98,8 +98,8 @@
 .search-shrink {
   -webkit-animation-name: searchShrink;
           animation-name: searchShrink;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
   -webkit-animation-direction: normal;
           animation-direction: normal;
   -webkit-animation-timing-function: ease-out;
@@ -115,8 +115,8 @@
 .path-stretch {
   -webkit-animation-name: pathStretch;
           animation-name: pathStretch;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
   -webkit-animation-direction: normal;
           animation-direction: normal;
   -webkit-animation-timing-function: ease-out;
@@ -132,8 +132,8 @@
 .path-shrink {
   -webkit-animation-name: pathShrink;
           animation-name: pathShrink;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
   -webkit-animation-direction: normal;
           animation-direction: normal;
   -webkit-animation-timing-function: ease-out;

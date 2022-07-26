@@ -58,7 +58,7 @@ $skyblue: #87CEEB;
 /* Animation Classes */
 .stretch {
     animation-name: stretch;
-    animation-duration: 0.5s;
+    animation-duration: 0.2s;
     animation-direction: normal;
     animation-timing-function: ease-out;
     animation-iteration-count: 1;
@@ -68,7 +68,7 @@ $skyblue: #87CEEB;
 
 .shrink {
     animation-name: shrink;
-    animation-duration: 1s;
+    animation-duration: 0.8s;
     animation-direction: normal;
     animation-timing-function: ease-out;
     animation-iteration-count: 1;
@@ -78,7 +78,7 @@ $skyblue: #87CEEB;
 
 .search-stretch {
     animation-name: searchStretch;
-    animation-duration: 1s;
+    animation-duration: 0.8s;
     animation-direction: normal;
     animation-timing-function: ease-out;
     animation-iteration-count: 1;
@@ -88,7 +88,7 @@ $skyblue: #87CEEB;
 
 .search-shrink {
     animation-name: searchShrink;
-    animation-duration: 1s;
+    animation-duration: 0.8s;
     animation-direction: normal;
     animation-timing-function: ease-out;
     animation-iteration-count: 1;
@@ -98,7 +98,7 @@ $skyblue: #87CEEB;
 
 .path-stretch {
     animation-name: pathStretch;
-    animation-duration: 1s;
+    animation-duration: 0.8s;
     animation-direction: normal;
     animation-timing-function: ease-out;
     animation-iteration-count: 1;
@@ -108,7 +108,7 @@ $skyblue: #87CEEB;
 
 .path-shrink {
     animation-name: pathShrink;
-    animation-duration: 1s;
+    animation-duration: 0.8s;
     animation-direction: normal;
     animation-timing-function: ease-out;
     animation-iteration-count: 1;
