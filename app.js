@@ -1,9 +1,11 @@
 /* JavaScript for Pathfinding Visualizer */
 
-import * as algorithm from './algorithms.js';
+import { dfs, bfs, greedy, dijkstra, astar } from './algorithms.js';
 
 const TOTAL_ROW = 20;
 const TOTAL_COL = 50;
+const SRC = [9, 5];
+const DEST = [9, 44];
 var ALGORITHM = '';
 var neighbors = {};
 var walls = [];
@@ -44,6 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('#message').innerHTML = `${ALGORITHM} Algorithm`
         });
     });
+
+    dfs();
 });
 
 
@@ -95,9 +99,9 @@ function preprocess() {
             // Initialize an array for each cell
             neighbors[[i, j]] = [];
 
-            // If not the first row, append cell with (row - 1) 
-            if (i > 0) {
-                neighbors[[i, j]].push([i - 1, j]);
+            // If not the last row, append cell with (row + 1)
+            if (i < TOTAL_ROW - 1) {
+                neighbors[[i, j]].push([i + 1, j]);
             }
 
             // If not the first col, append cell with (col - 1)
@@ -105,14 +109,14 @@ function preprocess() {
                 neighbors[[i, j]].push([i, j - 1]);
             }
 
-            // If not the last row, append cell with (row + 1)
-            if (i < TOTAL_ROW - 1) {
-                neighbors[[i, j]].push([i + 1, j]);
-            }
-
             // If not the last col, append col with (col + 1)
             if (j < TOTAL_COL - 1) {
                 neighbors[[i, j]].push([i, j + 1]);
+            }
+
+            // If not the first row, append cell with (row - 1) 
+            if (i > 0) {
+                neighbors[[i, j]].push([i - 1, j]);
             }
         }
     }
@@ -175,4 +179,4 @@ function tableCreate() {
     grid.append(tbl);
 }
 
-export { neighbors };
+export { SRC, DEST, neighbors };
