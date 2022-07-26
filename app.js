@@ -1,15 +1,26 @@
 /* JavaScript for Pathfinding Visualizer */
 
+// Import all algorithms from 'algorithms.js'
 import { dfs, bfs, greedy, dijkstra, astar, timer } from './algorithms.js';
 
+// Total number of rows and columns of grid
 const TOTAL_ROW = 20;
 const TOTAL_COL = 50;
+
+// Start point and end point of the path
 const SRC = [9, 5];
 const DEST = [9, 44];
+
+// Animation Name
 var ALGORITHM = '';
+
+// Store all pre-computed neighbors for each cell
 var neighbors = {};
+
+// Store all walls
 var walls = [];
 
+/* Map Algorithms names to their functions for convenient call */
 const fnMap = {
     "DFS": dfs,
     "BFS": bfs,
@@ -18,6 +29,8 @@ const fnMap = {
     "A*": astar
 };
 
+
+/* Main Event Listeners */
 document.addEventListener('DOMContentLoaded', function () {
 
     // Create Grid with boxes
@@ -57,57 +70,46 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-/* Update which cells are walls */
-function updateWalls(box_container) {
-    // id = 'row_col'
-    const idx = box_container.id.split(/[_]/);
-    const row = parseInt(idx[0]);
-    const col = parseInt(idx[1]);
-    const box = box_container.children[0];
-
-    // Add wall
-    if (box.dataset.animation === 'stretch') {
-        walls.push([row, col]);
-
-    } else if (box.dataset.animation === 'shrink') { // Remove wall
-        const index = JSON.stringify(walls).indexOf(JSON.stringify([row, col]));
-        console.log(index);
-        if (index != -1) { // only splice array when item is found
-            walls.splice(index - 1, 1); // 2nd parameter means remove one item only
-        }
-    }
-}
-
-
 /* Select the algorithm to run */
 async function selectAlgorithm() {
+
+    // Haven't yet select an algorithm
     if (ALGORITHM === '') {
         document.querySelector('#message').innerHTML = 'Please Select an Algorithm First';
-    }
-    else {
+
+    } else { // Call corresponding algorithm using fnMap, then draw path
         document.querySelector('#message').innerHTML = `Visualizing ${ALGORITHM} Algorithm`;
         document.querySelector('#visualize').disabled = true;
         document.querySelector('#clear').disabled = true;
         document.querySelector('#algo-btn').disabled = true;
         const path = await fnMap[ALGORITHM]();
 
+        // There is a valid path
         if (path) {
             document.querySelector('#message').innerHTML = 'Path Found!';
             await drawPath(path);
 
+            // No valid Path
         } else document.querySelector('#message').innerHTML = 'Path Not Found!';
 
+        // Just to enforce the clear button is disabled before all animation finishes
         await timer(1000);
+
         document.querySelector('#clear').disabled = false;
     }
 }
 
 
+/* Draw resulting path */
 async function drawPath(path) {
+
+    // For every cell on the path
     for (let i = 0; i < path.length; i++) {
         const idx = path[i];
         const id = `${idx[0]}_${idx[1]}`;
         const box = document.getElementById(id).children[0];
+
+        // Make sure there is a box to animate
         if (box) {
             box.classList.remove('search-shrink');
             box.classList.add('path-stretch');
@@ -115,6 +117,7 @@ async function drawPath(path) {
             box.style.animationPlayState = 'running';
         }
 
+        // Add delay between each box animation
         await timer(10);
     }
 }
@@ -143,6 +146,73 @@ function clear() {
 
     // Clear Message
     document.querySelector('#message').innerHTML = 'Click on Grid to Add Wall';
+}
+
+
+/* Stop Animation and Set Animation Accordingly, this function is called when the animation ended */
+function setBoxAnimationState(box) {
+
+    box.style.animationPlayState = 'paused';
+
+    // If the stretch animation ended, toggle to shrink animation
+    if (box.dataset.animation === 'stretch') {
+        box.classList.remove('stretch');
+        box.classList.add('shrink');
+        box.dataset.animation = 'shrink';
+
+        // If shrink animation ended, toggle to stretch animation
+    } else if (box.dataset.animation === 'shrink') {
+        box.classList.remove('shrink');
+        box.classList.add('stretch');
+        box.dataset.animation = 'stretch';
+
+        // If search stretch animation ended, toggle to search shrink
+    } else if (box.dataset.animation === 'search-stretch') {
+        box.classList.remove('search-stretch');
+        box.classList.add('search-shrink');
+        box.dataset.animation = 'search-shrink';
+
+        // If search shrink animation ended, toggle to stretch
+    } else if (box.dataset.animation === 'search-shrink') {
+        box.classList.remove('search-shrink');
+        box.classList.add('stretch');
+        box.dataset.animation = 'stretch';
+
+        // If path stretch animation ended, toggle to path shrink
+    } else if (box.dataset.animation === 'path-stretch') {
+        box.classList.remove('path-stretch');
+        box.classList.add('path-shrink');
+        box.dataset.animation = 'path-shrink';
+
+        // If path shrink animation ended, toggle to stretch
+    } else if (box.dataset.animation === 'path-shrink') {
+        box.classList.remove('path-shrink');
+        box.classList.add('stretch');
+        box.dataset.animation = 'stretch';
+    }
+}
+
+
+/* Update which cells are walls */
+function updateWalls(box_container) {
+    // id = 'row_col'
+    const idx = box_container.id.split(/[_]/);
+    const row = parseInt(idx[0]);
+    const col = parseInt(idx[1]);
+    const box = box_container.children[0];
+
+    // Add wall if current box is not stretched yet (not a wall)
+    if (box.dataset.animation === 'stretch') {
+        walls.push([row, col]);
+
+        // Remove wall if current box is already stretched (already a wall)
+    } else if (box.dataset.animation === 'shrink') {
+        const index = JSON.stringify(walls).indexOf(JSON.stringify([row, col]));
+        console.log(index);
+        if (index != -1) { // only splice array when item is found
+            walls.splice(index - 1, 1); // 2nd parameter means remove one item only
+        }
+    }
 }
 
 
@@ -181,45 +251,6 @@ function preprocess() {
 }
 
 
-/* Stop Animation and Set Animation Accordingly */
-function setBoxAnimationState(box) {
-
-    box.style.animationPlayState = 'paused';
-
-    // Toggle between Stretch & Shrink
-    if (box.dataset.animation === 'stretch') {
-        box.classList.remove('stretch');
-        box.classList.add('shrink');
-        box.dataset.animation = 'shrink';
-
-    } else if (box.dataset.animation === 'shrink') {
-        box.classList.remove('shrink');
-        box.classList.add('stretch');
-        box.dataset.animation = 'stretch';
-
-    } else if (box.dataset.animation === 'search-stretch') {
-        box.classList.remove('search-stretch');
-        box.classList.add('search-shrink');
-        box.dataset.animation = 'search-shrink';
-
-    } else if (box.dataset.animation === 'search-shrink') {
-        box.classList.remove('search-shrink');
-        box.classList.add('stretch');
-        box.dataset.animation = 'stretch';
-
-    } else if (box.dataset.animation === 'path-stretch') {
-        box.classList.remove('path-stretch');
-        box.classList.add('path-shrink');
-        box.dataset.animation = 'path-shrink';
-
-    } else if (box.dataset.animation === 'path-shrink') {
-        box.classList.remove('path-shrink');
-        box.classList.add('stretch');
-        box.dataset.animation = 'stretch';
-    }
-}
-
-
 /* Create Grid */
 function tableCreate() {
     const grid = document.querySelector('#grid');
@@ -234,16 +265,16 @@ function tableCreate() {
             td.classList.add('box-container');
 
             // Source
-            if (i === 9 && j === 5) {
+            if (i === SRC[0] && j === SRC[1]) {
                 td.style.backgroundColor = '#FFE2C8';
             }
 
             // Destination
-            else if (i === 9 && j === 44) {
+            else if (i === DEST[0] && j === DEST[1]) {
                 td.style.backgroundColor = '#FFC7D7';
             }
 
-            // Box
+            // Box if not src nor destination
             else {
                 const box = document.createElement('div');
                 box.classList.add('box', 'stretch');
@@ -252,10 +283,15 @@ function tableCreate() {
                 td.append(box);
             }
 
+            // Give each cell an id for later animation reference
             td.setAttribute('id', `${i}_${j}`);
         }
     }
+
+    // Add grid to DOM
     grid.append(tbl);
 }
 
+
+// Export
 export { SRC, DEST, neighbors, walls };

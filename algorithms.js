@@ -1,10 +1,10 @@
-/* Algorithms */
-
+// Import useful global variables from 'app.js'
 import { SRC, DEST, neighbors, walls } from './app.js';
 
-// Returns a Promise that resolves after "ms" Milliseconds
+// Returns a Promise that resolves after "ms" Milliseconds (delay)
 const timer = ms => new Promise(res => setTimeout(res, ms));
 
+/* Node class for search algorithms */
 class Node {
     constructor(state, parent) {
         this.state = state;
@@ -12,6 +12,10 @@ class Node {
     }
 }
 
+
+/* ----------------------------- Algorithms ------------------------------ */
+
+/* Depth First Search */
 async function dfs() {
 
     // Store all nodes to be traversed
@@ -42,33 +46,45 @@ async function dfs() {
                 return backTrack(curNode);
             }
 
+            // Animate the current node
             animateSearch(curNode.state);
 
-            // Push all the neighbors of current node
+            // Push all the neighbors of current node if they are not walls and they haven't been searched
             neighbors[curNode.state].forEach(idx => {
                 if ((!exists(searched, idx)) && !exists(walls, idx)) {
                     stackFrontier.push(new Node(idx, curNode));
                 }
             })
+
+            // Delay
             await timer(10);
         }
     }
 
+    // No valid path
     return null;
 }
 
+
+/* Breadth First Search */
 function bfs() {
 
 }
 
+
+/* Greedy Best-First Search */
 function greedy() {
 
 }
 
+
+/* Dijkstra's Algorithm */
 function dijkstra() {
 
 }
 
+
+/* A* Algorithm */
 function astar() {
 
 }
@@ -111,11 +127,6 @@ function exists(arr1, arr2) {
         return true;
     }
     return false;
-}
-
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 
