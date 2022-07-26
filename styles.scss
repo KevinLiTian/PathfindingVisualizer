@@ -5,6 +5,7 @@ $dark: #7D9D9C;
 $darker: #576F72;
 $start: #FFE2C8;
 $end: #FFC7D7;
+$skyblue: #87CEEB;
 
 * {
     padding: 0;
@@ -157,6 +158,22 @@ $end: #FFC7D7;
         border-radius: 100%;
     }
 
+    1% {
+        transform: scale(1.1);
+        background-color: $start;
+    }
+
+    3% {
+        transform: scale(1.1);
+        background-color: $start;
+    }
+
+    4% {
+        transform: scale(0);
+        background-color: $white;
+        border-radius: 100%;
+    }
+
     50% {
         background-color: $lighter;
     }
@@ -191,7 +208,7 @@ $end: #FFC7D7;
         border-radius: 100%;
     }
 
-    50% {
+    75% {
         background-color: $start;
     }
 
@@ -207,7 +224,7 @@ $end: #FFC7D7;
         background-color: $end;
     }
 
-    50% {
+    90% {
         background-color: $start;
     }
 

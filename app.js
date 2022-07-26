@@ -90,14 +90,15 @@ async function selectAlgorithm() {
         document.querySelector('#clear').disabled = true;
         document.querySelector('#algo-btn').disabled = true;
         const path = await fnMap[ALGORITHM]();
-        document.querySelector('#clear').disabled = false;
 
         if (path) {
-            await drawPath(path);
             document.querySelector('#message').innerHTML = 'Path Found!';
-        }
+            await drawPath(path);
 
-        else document.querySelector('#message').innerHTML = 'Path Not Found!';
+        } else document.querySelector('#message').innerHTML = 'Path Not Found!';
+
+        await timer(1000);
+        document.querySelector('#clear').disabled = false;
     }
 }
 
