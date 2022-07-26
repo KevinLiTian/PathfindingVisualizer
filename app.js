@@ -4,8 +4,6 @@ import * as algorithm from './algorithms.js';
 
 const TOTAL_ROW = 20;
 const TOTAL_COL = 50;
-const SRC = [9, 5];
-const DEST = [9, 44];
 var ALGORITHM = '';
 var neighbors = {};
 var walls = [];
@@ -43,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.dropdown-item').forEach(algo => {
         algo.addEventListener('click', () => {
             ALGORITHM = algo.dataset.algo;
-            document.querySelector('#message').innerHTML = `${ALGORITHM}`
+            document.querySelector('#message').innerHTML = `${ALGORITHM} Algorithm`
         });
     });
 });
@@ -63,7 +61,7 @@ function selectAlgorithm() {
         document.querySelector('#message').innerHTML = 'Please Select an Algorithm First';
     }
     else {
-        document.querySelector('#message').innerHTML = `Visualizing ${ALGORITHM}`;
+        document.querySelector('#message').innerHTML = `Visualizing ${ALGORITHM} Algorithm`;
     }
 }
 
@@ -176,3 +174,5 @@ function tableCreate() {
     }
     grid.append(tbl);
 }
+
+export { neighbors };
