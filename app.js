@@ -4,6 +4,7 @@ const TOTAL_ROW = 20;
 const TOTAL_COL = 50;
 var ALGORITHM = '';
 var neighbors = {};
+var walls = [];
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Play Animation
             box_container.addEventListener('click', () => {
                 box.style.animationPlayState = 'running';
+                updateWalls(box_container.id);
             });
 
             // Set Animation
@@ -43,6 +45,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+/* Update which cells are walls */
+function updateWalls(id) {
+    const idx = id.split(/[_]/);
+    walls.push([idx[0], idx[1]]);
+}
+
+
 /* Select the algorithm to run */
 function selectAlgorithm() {
     if (ALGORITHM === '') {
@@ -63,6 +72,9 @@ function clear() {
             box.style.animationPlayState = 'running';
         }
     });
+
+    // Clear wall data
+    walls = [];
 
     // Clear Message
     document.querySelector('#message').innerHTML = 'Click on Grid to Add Wall';
