@@ -27,9 +27,19 @@ document.addEventListener('DOMContentLoaded', function () {
     // Pre-process data
     preprocess();
 
-    // Event Listeners for all buttons
+    // Event Listeners for Visualize Button
     document.querySelector('#visualize').addEventListener('click', selectAlgorithm);
-    document.querySelector('#clear').addEventListener('click', clear)
+
+    // Event Listeners for Clear Button
+    document.querySelector('#clear').addEventListener('click', clear);
+
+    // Event Listeners for four Algorithm Buttons
+    document.querySelectorAll('.dropdown-item').forEach(algo => {
+        algo.addEventListener('click', () => {
+            ALGORITHM = algo.dataset.algo;
+            document.querySelector('#message').innerHTML = `${ALGORITHM}`
+        });
+    });
 });
 
 
@@ -37,6 +47,9 @@ document.addEventListener('DOMContentLoaded', function () {
 function selectAlgorithm() {
     if (ALGORITHM === '') {
         document.querySelector('#message').innerHTML = 'Please Select an Algorithm First';
+    }
+    else {
+        document.querySelector('#message').innerHTML = `Visualizing ${ALGORITHM}`;
     }
 }
 
