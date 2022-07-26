@@ -4,7 +4,7 @@ $light: #E4DCCF;
 $dark: #7D9D9C;
 $darker: #576F72;
 $start: #FFE2C8;
-$end: #FFC7D7;
+$end: #ABC9FF;
 $skyblue: #87CEEB;
 
 * {
@@ -202,35 +202,27 @@ $skyblue: #87CEEB;
 }
 
 @keyframes pathStretch {
-    0% {
+    from {
         transform: scale(0);
-        background-color: $start;
+        background-color: $skyblue;
         border-radius: 100%;
     }
 
-    75% {
-        background-color: $start;
-    }
-
-    100% {
+    to {
         transform: scale(1.1);
         background-color: $end;
     }
 }
 
 @keyframes pathShrink {
-    0% {
+    from {
         transform: scale(1.1);
         background-color: $end;
     }
 
-    90% {
-        background-color: $start;
-    }
-
-    100% {
+    to {
         transform: scale(0);
-        background-color: $start;
+        background-color: $skyblue;
         border-radius: 100%;
     }
 }

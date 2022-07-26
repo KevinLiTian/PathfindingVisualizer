@@ -286,58 +286,46 @@
   }
 }
 @-webkit-keyframes pathStretch {
-  0% {
+  from {
     transform: scale(0);
-    background-color: #FFE2C8;
+    background-color: #87CEEB;
     border-radius: 100%;
   }
-  75% {
-    background-color: #FFE2C8;
-  }
-  100% {
+  to {
     transform: scale(1.1);
-    background-color: #FFC7D7;
+    background-color: #ABC9FF;
   }
 }
 @keyframes pathStretch {
-  0% {
+  from {
     transform: scale(0);
-    background-color: #FFE2C8;
+    background-color: #87CEEB;
     border-radius: 100%;
   }
-  75% {
-    background-color: #FFE2C8;
-  }
-  100% {
+  to {
     transform: scale(1.1);
-    background-color: #FFC7D7;
+    background-color: #ABC9FF;
   }
 }
 @-webkit-keyframes pathShrink {
-  0% {
+  from {
     transform: scale(1.1);
-    background-color: #FFC7D7;
+    background-color: #ABC9FF;
   }
-  90% {
-    background-color: #FFE2C8;
-  }
-  100% {
+  to {
     transform: scale(0);
-    background-color: #FFE2C8;
+    background-color: #87CEEB;
     border-radius: 100%;
   }
 }
 @keyframes pathShrink {
-  0% {
+  from {
     transform: scale(1.1);
-    background-color: #FFC7D7;
+    background-color: #ABC9FF;
   }
-  90% {
-    background-color: #FFE2C8;
-  }
-  100% {
+  to {
     transform: scale(0);
-    background-color: #FFE2C8;
+    background-color: #87CEEB;
     border-radius: 100%;
   }
 }/*# sourceMappingURL=styles.css.map */
