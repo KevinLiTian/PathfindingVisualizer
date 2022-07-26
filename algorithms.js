@@ -18,10 +18,9 @@ async function dfs() {
     let stackFrontier = [];
 
     // First push in source node neighbors
-    const srcNode = new Node(SRC, null);
     neighbors[SRC].forEach(idx => {
         if (!exists(walls, idx)) {
-            stackFrontier.push(new Node(idx, srcNode));
+            stackFrontier.push(new Node(idx, null));
         }
     })
 

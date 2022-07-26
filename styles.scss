@@ -3,6 +3,8 @@ $lighter: #F0EBE3;
 $light: #E4DCCF;
 $dark: #7D9D9C;
 $darker: #576F72;
+$start: #FFE2C8;
+$end: #FFC7D7;
 
 * {
     padding: 0;
@@ -65,7 +67,7 @@ $darker: #576F72;
 
 .shrink {
     animation-name: shrink;
-    animation-duration: 0.5s;
+    animation-duration: 1s;
     animation-direction: normal;
     animation-timing-function: ease-out;
     animation-iteration-count: 1;
@@ -75,7 +77,7 @@ $darker: #576F72;
 
 .search-stretch {
     animation-name: searchStretch;
-    animation-duration: 0.5s;
+    animation-duration: 1s;
     animation-direction: normal;
     animation-timing-function: ease-out;
     animation-iteration-count: 1;
@@ -85,7 +87,27 @@ $darker: #576F72;
 
 .search-shrink {
     animation-name: searchShrink;
-    animation-duration: 0.5s;
+    animation-duration: 1s;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+.path-stretch {
+    animation-name: pathStretch;
+    animation-duration: 1s;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+.path-shrink {
+    animation-name: pathShrink;
+    animation-duration: 1s;
     animation-direction: normal;
     animation-timing-function: ease-out;
     animation-iteration-count: 1;
@@ -158,6 +180,40 @@ $darker: #576F72;
     100% {
         transform: scale(0);
         background-color: $white;
+        border-radius: 100%;
+    }
+}
+
+@keyframes pathStretch {
+    0% {
+        transform: scale(0);
+        background-color: $start;
+        border-radius: 100%;
+    }
+
+    50% {
+        background-color: $start;
+    }
+
+    100% {
+        transform: scale(1.1);
+        background-color: $end;
+    }
+}
+
+@keyframes pathShrink {
+    0% {
+        transform: scale(1.1);
+        background-color: $end;
+    }
+
+    50% {
+        background-color: $start;
+    }
+
+    100% {
+        transform: scale(0);
+        background-color: $start;
         border-radius: 100%;
     }
 }

@@ -91,22 +91,50 @@ async function selectAlgorithm() {
         document.querySelector('#algo-btn').disabled = true;
         const path = await fnMap[ALGORITHM]();
         document.querySelector('#clear').disabled = false;
+
+        if (path) {
+            await drawPath(path);
+            document.querySelector('#message').innerHTML = 'Path Found!';
+        }
+
+        else document.querySelector('#message').innerHTML = 'Path Not Found!';
+    }
+}
+
+
+async function drawPath(path) {
+    for (let i = 0; i < path.length; i++) {
+        const idx = path[i];
+        const id = `${idx[0]}_${idx[1]}`;
+        const box = document.getElementById(id).children[0];
+        if (box) {
+            box.classList.remove('search-shrink');
+            box.classList.add('path-stretch');
+            box.dataset.animation = 'path-stretch';
+            box.style.animationPlayState = 'running';
+        }
+
+        await timer(10);
     }
 }
 
 
 /* Clear everything */
 function clear() {
+
     // Clear boxes
     document.querySelectorAll('.box-container').forEach(box_container => {
         const box = box_container.children[0];
-        if (box && (box.dataset.animation === 'shrink' || box.dataset.animation === 'search-shrink')) {
+        if (box && (box.dataset.animation === 'shrink' || box.dataset.animation === 'search-shrink' || box.dataset.animation === 'path-shrink')) {
             box.style.animationPlayState = 'running';
         }
     });
 
     // Clear wall data
     walls = [];
+
+    // Clear Algorithm
+    ALGORITHM = '';
 
     // Enable buttons
     document.querySelector('#visualize').disabled = false;
@@ -175,6 +203,16 @@ function setBoxAnimationState(box) {
 
     } else if (box.dataset.animation === 'search-shrink') {
         box.classList.remove('search-shrink');
+        box.classList.add('stretch');
+        box.dataset.animation = 'stretch';
+
+    } else if (box.dataset.animation === 'path-stretch') {
+        box.classList.remove('path-stretch');
+        box.classList.add('path-shrink');
+        box.dataset.animation = 'path-shrink';
+
+    } else if (box.dataset.animation === 'path-shrink') {
+        box.classList.remove('path-shrink');
         box.classList.add('stretch');
         box.dataset.animation = 'stretch';
     }
