@@ -1,6 +1,16 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.container {
+    min-width: 1200px !important;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 .box {
@@ -11,6 +21,29 @@
     height: 25px;
     width: 25px;
     border: 1px solid #7D9D9C;
+}
+
+.dropdown-item {
+    color: #7D9D9C;
+}
+
+.dropdown-item:hover {
+    color: #576F72;
+    background-color: #F0EBE3;
+}
+
+.dropdown-item:active {
+    color: #576F72;
+}
+
+.social_icon--link {
+    color: #7D9D9C;
+    font-size: 40px;
+    transition: all .2s ease-in-out;
+}
+
+.social_icon--link:hover {
+    color: #576F72;
 }
 
 /* Animation Classes */

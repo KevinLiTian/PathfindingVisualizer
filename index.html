@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
+    <!-- From font awesome website, to get icons -->
+    <script src="https://kit.fontawesome.com/e3608bdf86.js" crossorigin="anonymous"></script>
+
     <!-- Custom CSS & JavaScript -->
     <link rel="stylesheet" href="styles.css">
     <script src="app.js"></script>
@@ -19,7 +22,7 @@
 
 <body>
     <!-- Nav Section -->
-    <nav class="mb-2 p-4">
+    <nav class="p-4">
         <div class="container">
             <div class="row">
                 <div class="col-4">
@@ -27,18 +30,18 @@
                 </div>
 
                 <div class="col-4 text-center">
-                    <button class="btn btn-secondary btn-lg">Visualize</button>
+                    <button class="btn btn-secondary btn-lg" id="visualize">Visualize</button>
                 </div>
                 <div class="dropdown col-4 text-end">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-secondary me-2" id="clear">Clear</button>
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         Algorithm
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">DFS</a></li>
-                        <li><a class="dropdown-item" href="#">BFS</a></li>
-                        <li><a class="dropdown-item" href="#">Greedy</a></li>
-                        <li><a class="dropdown-item" href="#">A*</a></li>
+                        <li><a class="dropdown-item" href="#" id="dfs">DFS</a></li>
+                        <li><a class="dropdown-item" href="#" id="bfs">BFS</a></li>
+                        <li><a class="dropdown-item" href="#" id="greedy">Greedy</a></li>
+                        <li><a class="dropdown-item" href="#" id="astar">A*</a></li>
                     </ul>
                 </div>
             </div>
@@ -46,12 +49,22 @@
     </nav>
 
     <!-- Message if any -->
-    <div class="container text-center mb-3" id="message"></div>
+    <div class="container text-center mb-3">
+        <h4 id="message">Click on Grid to Add Wall</h4>
+    </div>
 
     <!-- Grid Section -->
     <section>
         <div class="container" id="grid"></div>
     </section>
+
+    <footer>
+        <div class="container text-center pt-1">
+            <a href="https://github.com/KevinLiTian" class="social_icon--link" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+    </footer>
 
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

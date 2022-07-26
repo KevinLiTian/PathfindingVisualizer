@@ -1,9 +1,16 @@
+/* JavaScript for Pathfinding Visualizer */
+
+const TOTAL_ROW = 20;
+const TOTAL_COL = 50;
+var ALGORITHM = '';
+var neighbors = {};
+
 document.addEventListener('DOMContentLoaded', function () {
 
     // Create Grid with boxes
     tableCreate();
 
-    // Add click event listener to all boxes
+    // Add click event listener to all boxes for animation
     document.querySelectorAll('.box-container').forEach((box_container) => {
         const box = box_container.children[0];
         if (box) {
@@ -16,7 +23,73 @@ document.addEventListener('DOMContentLoaded', function () {
             box.addEventListener('animationend', () => setBoxAnimationState(box));
         }
     });
+
+    // Pre-process data
+    preprocess();
+
+    // Event Listeners for all buttons
+    document.querySelector('#visualize').addEventListener('click', selectAlgorithm);
+    document.querySelector('#clear').addEventListener('click', clear)
 });
+
+
+/* Select the algorithm to run */
+function selectAlgorithm() {
+    if (ALGORITHM === '') {
+        document.querySelector('#message').innerHTML = 'Please Select an Algorithm First';
+    }
+}
+
+
+/* Clear everything */
+function clear() {
+    // Clear boxes
+    document.querySelectorAll('.box-container').forEach(box_container => {
+        const box = box_container.children[0];
+        if (box && box.dataset.animation === 'shrink') {
+            box.style.animationPlayState = 'running';
+        }
+    });
+
+    // Clear Message
+    document.querySelector('#message').innerHTML = 'Click on Grid to Add Wall';
+}
+
+
+/* Pre-Process Neighbors Data
+For each cell with index (i, j):
+neighbors[[i, j]]: [[i - 1,j], [i + 1,j], ...]]
+*/
+function preprocess() {
+    for (let i = 0; i < TOTAL_ROW; i++) {
+        for (let j = 0; j < TOTAL_COL; j++) {
+
+            // Initialize an array for each cell
+            neighbors[[i, j]] = [];
+
+            // If not the first row, append cell with (row - 1) 
+            if (i > 0) {
+                neighbors[[i, j]].push([i - 1, j]);
+            }
+
+            // If not the first col, append cell with (col - 1)
+            if (j > 0) {
+                neighbors[[i, j]].push([i, j - 1]);
+            }
+
+            // If not the last row, append cell with (row + 1)
+            if (i < TOTAL_ROW - 1) {
+                neighbors[[i, j]].push([i + 1, j]);
+            }
+
+            // If not the last col, append col with (col + 1)
+            if (j < TOTAL_COL - 1) {
+                neighbors[[i, j]].push([i, j + 1]);
+            }
+        }
+    }
+}
+
 
 /* Stop Animation and Set Animation Accordingly */
 function setBoxAnimationState(box) {
@@ -35,6 +108,7 @@ function setBoxAnimationState(box) {
     }
 }
 
+
 /* Create Grid */
 function tableCreate() {
     const grid = document.querySelector('#grid');
@@ -42,9 +116,9 @@ function tableCreate() {
     tbl.style.borderCollapse = 'collapse';
     tbl.style.width = '100%';
 
-    for (let i = 0; i < 21; i++) {
+    for (let i = 0; i < TOTAL_ROW; i++) {
         const tr = tbl.insertRow();
-        for (let j = 0; j < 50; j++) {
+        for (let j = 0; j < TOTAL_COL; j++) {
             const td = tr.insertCell();
             td.classList.add('box-container');
 
@@ -66,6 +140,8 @@ function tableCreate() {
 
                 td.append(box);
             }
+
+            td.setAttribute('id', `${i}_${j}`);
         }
     }
     grid.append(tbl);
