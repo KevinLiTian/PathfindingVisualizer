@@ -18,7 +18,7 @@ class Node {
 /* Depth First Search */
 async function dfs() {
 
-    // Store all nodes to be traversed
+    // Store all nodes to be traversed in a stack data structure
     let stackFrontier = [];
 
     // First push in source node neighbors
@@ -67,8 +67,53 @@ async function dfs() {
 
 
 /* Breadth First Search */
-function bfs() {
+async function bfs() {
 
+    // Store all nodes to be traversed in a queue data structure
+    let queueFrontier = [];
+
+    // First push in source node neighbors
+    neighbors[SRC].forEach(idx => {
+        if (!exists(walls, idx)) {
+            queueFrontier.push(new Node(idx, null));
+        }
+    })
+
+    // Store all searched nodes to prevent infinite search
+    let searched = [];
+    searched.push(SRC);
+
+    // Traverse until no node can be found
+    while (queueFrontier.length != 0) {
+
+        // Search the next node
+        let curNode = queueFrontier.shift();
+
+        if (!exists(searched, curNode.state)) {
+            searched.push(curNode.state);
+
+            // Check if current node is the destination
+            if (JSON.stringify(curNode.state) === JSON.stringify(DEST)) {
+                return backTrack(curNode);
+            }
+
+            // Animate the current node
+            animateSearch(curNode.state);
+
+            // Push all the neighbors of current node if they are not walls and they haven't been searched
+            neighbors[curNode.state].forEach(idx => {
+                if ((!exists(searched, idx)) && !exists(walls, idx)) {
+                    queueFrontier.push(new Node(idx, curNode));
+                }
+            })
+
+            // Delay
+            await timer(10);
+        }
+    }
+
+    // No valid path
+    return null;
 }
 
 

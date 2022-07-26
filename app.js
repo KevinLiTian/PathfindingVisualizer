@@ -267,11 +267,13 @@ function tableCreate() {
             // Source
             if (i === SRC[0] && j === SRC[1]) {
                 td.style.backgroundColor = '#FFE2C8';
+                td.style.transform = 'scale(1.1)';
             }
 
             // Destination
             else if (i === DEST[0] && j === DEST[1]) {
                 td.style.backgroundColor = '#FFC7D7';
+                td.style.transform = 'scale(1.1)';
             }
 
             // Box if not src nor destination
