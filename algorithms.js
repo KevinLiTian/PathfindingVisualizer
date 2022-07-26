@@ -16,7 +16,14 @@ async function dfs() {
 
     // Store all nodes to be traversed
     let stackFrontier = [];
-    stackFrontier.push(new Node(SRC, null));
+
+    // First push in source node neighbors
+    const srcNode = new Node(SRC, null);
+    neighbors[SRC].forEach(idx => {
+        if (!exists(walls, idx)) {
+            stackFrontier.push(new Node(idx, srcNode));
+        }
+    })
 
     // Store all searched nodes to prevent infinite search
     let searched = [];
@@ -27,22 +34,25 @@ async function dfs() {
 
         // Search the next node
         let curNode = stackFrontier.pop();
-        searched.push(curNode.state);
 
-        // Check if current node is the destination
-        if (JSON.stringify(curNode.state) === JSON.stringify(DEST)) {
-            return backTrack(curNode);
-        }
+        if (!exists(searched, curNode.state)) {
+            searched.push(curNode.state);
 
-        animateSearch(curNode.state);
-
-        // Push all the neighbors of current node
-        neighbors[curNode.state].forEach(idx => {
-            if ((!exists(searched, idx)) && !exists(walls, idx)) {
-                stackFrontier.push(new Node(idx, curNode));
+            // Check if current node is the destination
+            if (JSON.stringify(curNode.state) === JSON.stringify(DEST)) {
+                return backTrack(curNode);
             }
-        })
-        await timer(10);
+
+            animateSearch(curNode.state);
+
+            // Push all the neighbors of current node
+            neighbors[curNode.state].forEach(idx => {
+                if ((!exists(searched, idx)) && !exists(walls, idx)) {
+                    stackFrontier.push(new Node(idx, curNode));
+                }
+            })
+            await timer(10);
+        }
     }
 
     return null;
@@ -85,6 +95,9 @@ function animateSearch(idx) {
     const id = `${idx[0]}_${idx[1]}`;
     const box = document.getElementById(id).children[0];
     if (box) {
+        box.classList.remove('stretch');
+        box.classList.add('search-stretch');
+        box.dataset.animation = 'search-stretch';
         box.style.animationPlayState = 'running';
     }
 }
@@ -107,4 +120,4 @@ function sleep(ms) {
 }
 
 
-export { dfs, bfs, greedy, dijkstra, astar };
+export { dfs, bfs, greedy, dijkstra, astar, timer };

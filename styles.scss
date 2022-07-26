@@ -1,3 +1,4 @@
+$white: white;
 $lighter: #F0EBE3;
 $light: #E4DCCF;
 $dark: #7D9D9C;
@@ -72,6 +73,26 @@ $darker: #576F72;
     animation-play-state: paused;
 }
 
+.search-stretch {
+    animation-name: searchStretch;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+.search-shrink {
+    animation-name: searchShrink;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
 /* Animations */
 @keyframes stretch {
     0% {
@@ -103,6 +124,40 @@ $darker: #576F72;
     100% {
         transform: scale(0);
         background-color: $lighter;
+        border-radius: 100%;
+    }
+}
+
+@keyframes searchStretch {
+    0% {
+        transform: scale(0);
+        background-color: $white;
+        border-radius: 100%;
+    }
+
+    50% {
+        background-color: $lighter;
+    }
+
+    100% {
+        transform: scale(1.1);
+        background-color: $light;
+    }
+}
+
+@keyframes searchShrink {
+    0% {
+        transform: scale(1.1);
+        background-color: $light;
+    }
+
+    50% {
+        background-color: $lighter;
+    }
+
+    100% {
+        transform: scale(0);
+        background-color: $white;
         border-radius: 100%;
     }
 }

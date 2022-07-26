@@ -1,6 +1,6 @@
 /* JavaScript for Pathfinding Visualizer */
 
-import { dfs, bfs, greedy, dijkstra, astar } from './algorithms.js';
+import { dfs, bfs, greedy, dijkstra, astar, timer } from './algorithms.js';
 
 const TOTAL_ROW = 20;
 const TOTAL_COL = 50;
@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if (box) {
             // Play Animation
             box_container.addEventListener('click', () => {
+                updateWalls(box_container);
                 box.style.animationPlayState = 'running';
-                updateWalls(box_container.id);
             });
 
             // Set Animation
@@ -58,11 +58,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 /* Update which cells are walls */
-function updateWalls(id) {
+function updateWalls(box_container) {
     // id = 'row_col'
-    const idx = id.split(/[_]/);
-    walls.push([parseInt(idx[0]), parseInt(idx[1])]);
-    console.log(walls);
+    const idx = box_container.id.split(/[_]/);
+    const row = parseInt(idx[0]);
+    const col = parseInt(idx[1]);
+    const box = box_container.children[0];
+
+    // Add wall
+    if (box.dataset.animation === 'stretch') {
+        walls.push([row, col]);
+
+    } else if (box.dataset.animation === 'shrink') { // Remove wall
+        const index = JSON.stringify(walls).indexOf(JSON.stringify([row, col]));
+        console.log(index);
+        if (index != -1) { // only splice array when item is found
+            walls.splice(index - 1, 1); // 2nd parameter means remove one item only
+        }
+    }
 }
 
 
@@ -87,7 +100,7 @@ function clear() {
     // Clear boxes
     document.querySelectorAll('.box-container').forEach(box_container => {
         const box = box_container.children[0];
-        if (box && box.dataset.animation === 'shrink') {
+        if (box && (box.dataset.animation === 'shrink' || box.dataset.animation === 'search-shrink')) {
             box.style.animationPlayState = 'running';
         }
     });
@@ -149,8 +162,19 @@ function setBoxAnimationState(box) {
         box.classList.remove('stretch');
         box.classList.add('shrink');
         box.dataset.animation = 'shrink';
-    } else {
+
+    } else if (box.dataset.animation === 'shrink') {
         box.classList.remove('shrink');
+        box.classList.add('stretch');
+        box.dataset.animation = 'stretch';
+
+    } else if (box.dataset.animation === 'search-stretch') {
+        box.classList.remove('search-stretch');
+        box.classList.add('search-shrink');
+        box.dataset.animation = 'search-shrink';
+
+    } else if (box.dataset.animation === 'search-shrink') {
+        box.classList.remove('search-shrink');
         box.classList.add('stretch');
         box.dataset.animation = 'stretch';
     }
