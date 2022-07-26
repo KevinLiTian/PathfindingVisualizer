@@ -61,18 +61,23 @@ document.addEventListener('DOMContentLoaded', function () {
 function updateWalls(id) {
     // id = 'row_col'
     const idx = id.split(/[_]/);
-    walls.push([idx[0], idx[1]]);
+    walls.push([parseInt(idx[0]), parseInt(idx[1])]);
+    console.log(walls);
 }
 
 
 /* Select the algorithm to run */
-function selectAlgorithm() {
+async function selectAlgorithm() {
     if (ALGORITHM === '') {
         document.querySelector('#message').innerHTML = 'Please Select an Algorithm First';
     }
     else {
         document.querySelector('#message').innerHTML = `Visualizing ${ALGORITHM} Algorithm`;
-        fnMap[ALGORITHM]();
+        document.querySelector('#visualize').disabled = true;
+        document.querySelector('#clear').disabled = true;
+        document.querySelector('#algo-btn').disabled = true;
+        const path = await fnMap[ALGORITHM]();
+        document.querySelector('#clear').disabled = false;
     }
 }
 
@@ -90,6 +95,10 @@ function clear() {
     // Clear wall data
     walls = [];
 
+    // Enable buttons
+    document.querySelector('#visualize').disabled = false;
+    document.querySelector('#algo-btn').disabled = false;
+
     // Clear Message
     document.querySelector('#message').innerHTML = 'Click on Grid to Add Wall';
 }
@@ -106,14 +115,14 @@ function preprocess() {
             // Initialize an array for each cell
             neighbors[[i, j]] = [];
 
-            // If not the last row, append cell with (row + 1)
-            if (i < TOTAL_ROW - 1) {
-                neighbors[[i, j]].push([i + 1, j]);
-            }
-
             // If not the first col, append cell with (col - 1)
             if (j > 0) {
                 neighbors[[i, j]].push([i, j - 1]);
+            }
+
+            // If not the last row, append cell with (row + 1)
+            if (i < TOTAL_ROW - 1) {
+                neighbors[[i, j]].push([i + 1, j]);
             }
 
             // If not the last col, append col with (col + 1)
@@ -186,4 +195,4 @@ function tableCreate() {
     grid.append(tbl);
 }
 
-export { SRC, DEST, neighbors };
+export { SRC, DEST, neighbors, walls };

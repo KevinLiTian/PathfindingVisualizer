@@ -1,6 +1,6 @@
 /* Algorithms */
 
-import { SRC, DEST, neighbors } from './app.js';
+import { SRC, DEST, neighbors, walls } from './app.js';
 
 // Returns a Promise that resolves after "ms" Milliseconds
 const timer = ms => new Promise(res => setTimeout(res, ms));
@@ -38,11 +38,11 @@ async function dfs() {
 
         // Push all the neighbors of current node
         neighbors[curNode.state].forEach(idx => {
-            if (!exists(searched, idx)) {
+            if ((!exists(searched, idx)) && !exists(walls, idx)) {
                 stackFrontier.push(new Node(idx, curNode));
             }
         })
-        await timer(50);
+        await timer(10);
     }
 
     return null;
