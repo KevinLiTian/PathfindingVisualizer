@@ -10,6 +10,14 @@ var ALGORITHM = '';
 var neighbors = {};
 var walls = [];
 
+const fnMap = {
+    "DFS": dfs,
+    "BFS": bfs,
+    "greedy": greedy,
+    "Dijkstra's": dijkstra,
+    "A*": astar
+};
+
 document.addEventListener('DOMContentLoaded', function () {
 
     // Create Grid with boxes
@@ -46,8 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('#message').innerHTML = `${ALGORITHM} Algorithm`
         });
     });
-
-    dfs();
 });
 
 
@@ -66,6 +72,7 @@ function selectAlgorithm() {
     }
     else {
         document.querySelector('#message').innerHTML = `Visualizing ${ALGORITHM} Algorithm`;
+        fnMap[ALGORITHM]();
     }
 }
 

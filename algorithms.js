@@ -27,6 +27,7 @@ async function dfs() {
 
         // Search the next node
         let curNode = stackFrontier.pop();
+        searched.push(curNode.state);
 
         // Check if current node is the destination
         if (JSON.stringify(curNode.state) === JSON.stringify(DEST)) {
@@ -39,10 +40,9 @@ async function dfs() {
         neighbors[curNode.state].forEach(idx => {
             if (!exists(searched, idx)) {
                 stackFrontier.push(new Node(idx, curNode));
-                searched.push(idx);
             }
         })
-        await timer(100);
+        await timer(50);
     }
 
     return null;
