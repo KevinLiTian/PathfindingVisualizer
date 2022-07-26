@@ -1,7 +1,11 @@
 /* JavaScript for Pathfinding Visualizer */
 
+import * as algorithm from './algorithms.js';
+
 const TOTAL_ROW = 20;
 const TOTAL_COL = 50;
+const SRC = [9, 5];
+const DEST = [9, 44];
 var ALGORITHM = '';
 var neighbors = {};
 var walls = [];
@@ -47,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /* Update which cells are walls */
 function updateWalls(id) {
+    // id = 'row_col'
     const idx = id.split(/[_]/);
     walls.push([idx[0], idx[1]]);
 }
