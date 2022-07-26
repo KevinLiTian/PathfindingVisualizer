@@ -1,0 +1,108 @@
+$lighter: #F0EBE3;
+$light: #E4DCCF;
+$dark: #7D9D9C;
+$darker: #576F72;
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.container {
+    min-width: 1200px !important;
+}
+
+.dropdown-item {
+    color: $dark;
+
+    &:hover {
+        color: $darker;
+        background-color: $lighter;
+    }
+
+    &:active {
+        color: $darker;
+    }
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.box {
+    height: 100%;
+}
+
+.box-container {
+    height: 25px;
+    width: 25px;
+    border: 1px solid $dark;
+}
+
+.social_icon--link {
+    color: $dark;
+    font-size: 40px;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        color: $darker;
+    }
+}
+
+/* Animation Classes */
+.stretch {
+    animation-name: stretch;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+.shrink {
+    animation-name: shrink;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+/* Animations */
+@keyframes stretch {
+    0% {
+        transform: scale(0);
+        background-color: $lighter;
+        border-radius: 100%;
+    }
+
+    50% {
+        background-color: $light;
+    }
+
+    100% {
+        transform: scale(1.1);
+        background-color: $dark;
+    }
+}
+
+@keyframes shrink {
+    0% {
+        transform: scale(1.1);
+        background-color: $dark;
+    }
+
+    50% {
+        background-color: $light;
+    }
+
+    100% {
+        transform: scale(0);
+        background-color: $lighter;
+        border-radius: 100%;
+    }
+}

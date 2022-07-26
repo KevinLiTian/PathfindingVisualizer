@@ -1,104 +1,153 @@
 * {
-    padding: 0;
-    margin: 0;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 0;
+  margin: 0;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .container {
-    min-width: 1200px !important;
-}
-
-.btn:focus {
-    outline: none;
-    box-shadow: none;
-}
-
-.box {
-    height: 100%;
-}
-
-.box-container {
-    height: 25px;
-    width: 25px;
-    border: 1px solid #7D9D9C;
+  min-width: 1200px !important;
 }
 
 .dropdown-item {
-    color: #7D9D9C;
+  color: #7D9D9C;
 }
 
 .dropdown-item:hover {
-    color: #576F72;
-    background-color: #F0EBE3;
+  color: #576F72;
+  background-color: #F0EBE3;
 }
 
 .dropdown-item:active {
-    color: #576F72;
+  color: #576F72;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.box {
+  height: 100%;
+}
+
+.box-container {
+  height: 25px;
+  width: 25px;
+  border: 1px solid #7D9D9C;
 }
 
 .social_icon--link {
-    color: #7D9D9C;
-    font-size: 40px;
-    transition: all .2s ease-in-out;
+  color: #7D9D9C;
+  font-size: 40px;
+  transition: all 0.2s ease-in-out;
 }
 
 .social_icon--link:hover {
-    color: #576F72;
+  color: #576F72;
 }
 
 /* Animation Classes */
 .stretch {
-    animation-name: stretch;
-    animation-duration: 0.5s;
-    animation-direction: normal;
-    animation-timing-function: ease-out;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-play-state: paused;
+  -webkit-animation-name: stretch;
+  animation-name: stretch;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-direction: normal;
+  animation-direction: normal;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 .shrink {
-    animation-name: shrink;
-    animation-duration: 0.5s;
-    animation-direction: normal;
-    animation-timing-function: ease-out;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-play-state: paused;
+  -webkit-animation-name: shrink;
+  animation-name: shrink;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-direction: normal;
+  animation-direction: normal;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
 }
 
-
 /* Animations */
+@-webkit-keyframes stretch {
+  0% {
+    transform: scale(0);
+    background-color: #F0EBE3;
+    border-radius: 100%;
+  }
+
+  50% {
+    background-color: #E4DCCF;
+  }
+
+  100% {
+    transform: scale(1.1);
+    background-color: #7D9D9C;
+  }
+}
+
 @keyframes stretch {
-    0% {
-        transform: scale(0);
-        background-color: #F0EBE3;
-        border-radius: 100%;
-    }
+  0% {
+    transform: scale(0);
+    background-color: #F0EBE3;
+    border-radius: 100%;
+  }
 
-    50% {
-        background-color: #E4DCCF;
-    }
+  50% {
+    background-color: #E4DCCF;
+  }
 
-    100% {
-        transform: scale(1.1);
-        background-color: #7D9D9C;
-    }
+  100% {
+    transform: scale(1.1);
+    background-color: #7D9D9C;
+  }
+}
+
+@-webkit-keyframes shrink {
+  0% {
+    transform: scale(1.1);
+    background-color: #7D9D9C;
+  }
+
+  50% {
+    background-color: #E4DCCF;
+  }
+
+  100% {
+    transform: scale(0);
+    background-color: #F0EBE3;
+    border-radius: 100%;
+  }
 }
 
 @keyframes shrink {
-    0% {
-        transform: scale(1.1);
-        background-color: #7D9D9C;
-    }
+  0% {
+    transform: scale(1.1);
+    background-color: #7D9D9C;
+  }
 
-    50% {
-        background-color: #E4DCCF;
-    }
+  50% {
+    background-color: #E4DCCF;
+  }
 
-    100% {
-        transform: scale(0);
-        background-color: #F0EBE3;
-        border-radius: 100%;
-    }
+  100% {
+    transform: scale(0);
+    background-color: #F0EBE3;
+    border-radius: 100%;
+  }
 }
+
+/*# sourceMappingURL=styles.css.map */
