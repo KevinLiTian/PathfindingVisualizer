@@ -146,6 +146,40 @@
           animation-play-state: paused;
 }
 
+.water-stretch {
+  -webkit-animation-name: waterStretch;
+          animation-name: waterStretch;
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
+.water-shrink {
+  -webkit-animation-name: waterShrink;
+          animation-name: waterShrink;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
 /* Animations */
 @-webkit-keyframes stretch {
   0% {
@@ -326,6 +360,50 @@
   to {
     transform: scale(0);
     background-color: #87CEEB;
+    border-radius: 100%;
+  }
+}
+@-webkit-keyframes waterStretch {
+  from {
+    transform: scale(0);
+    background-color: #ABC9FF;
+    border-radius: 100%;
+  }
+  to {
+    transform: scale(1.1);
+    background-color: #B2C8DF;
+  }
+}
+@keyframes waterStretch {
+  from {
+    transform: scale(0);
+    background-color: #ABC9FF;
+    border-radius: 100%;
+  }
+  to {
+    transform: scale(1.1);
+    background-color: #B2C8DF;
+  }
+}
+@-webkit-keyframes waterShrink {
+  from {
+    transform: scale(1.1);
+    background-color: #B2C8DF;
+  }
+  to {
+    transform: scale(0);
+    background-color: #ABC9FF;
+    border-radius: 100%;
+  }
+}
+@keyframes waterShrink {
+  from {
+    transform: scale(1.1);
+    background-color: #B2C8DF;
+  }
+  to {
+    transform: scale(0);
+    background-color: #ABC9FF;
     border-radius: 100%;
   }
 }/*# sourceMappingURL=styles.css.map */

@@ -67,6 +67,29 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('#message').innerHTML = `${ALGORITHM} Algorithm`
         });
     });
+
+    // Event listener for water cell animation
+    document.addEventListener("keydown", function (event) {
+        if (event.code === 'KeyW') {
+            window.onmousedown = (evt) => {
+                const target = evt.target;
+                if (target.classList.contains('box-container')) {
+                    const box = target.children[0];
+                    box.className = 'box';
+                    box.classList.add('water-stretch');
+                    box.dataset.animation = 'water-stretch';
+                    box.style.animationPlayState = 'running';
+                }
+            };
+        }
+    });
+
+    // Remove onmousedown event function
+    document.addEventListener("keyup", function (event) {
+        if (event.code === 'KeyW') {
+            window.onmousedown = () => { };
+        }
+    });
 });
 
 
@@ -129,7 +152,10 @@ function clear() {
     // Clear boxes
     document.querySelectorAll('.box-container').forEach(box_container => {
         const box = box_container.children[0];
-        if (box && (box.dataset.animation === 'shrink' || box.dataset.animation === 'search-shrink' || box.dataset.animation === 'path-shrink')) {
+        if (box && (box.dataset.animation === 'shrink'
+            || box.dataset.animation === 'search-shrink'
+            || box.dataset.animation === 'path-shrink'
+            || box.dataset.animation === 'water-shrink')) {
             box.style.animationPlayState = 'running';
         }
     });
@@ -187,6 +213,18 @@ function setBoxAnimationState(box) {
         // If path shrink animation ended, toggle to stretch
     } else if (box.dataset.animation === 'path-shrink') {
         box.classList.remove('path-shrink');
+        box.classList.add('stretch');
+        box.dataset.animation = 'stretch';
+
+        // If water stretch animation ended, toggle to water shrink
+    } else if (box.dataset.animation === 'water-stretch') {
+        box.classList.remove('water-stretch');
+        box.classList.add('water-shrink');
+        box.dataset.animation = 'water-shrink';
+
+        // If water shrink animation ended, toggle to stretch
+    } else if (box.dataset.animation === 'water-shrink') {
+        box.classList.remove('water-shrink');
         box.classList.add('stretch');
         box.dataset.animation = 'stretch';
     }

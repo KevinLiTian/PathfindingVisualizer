@@ -6,6 +6,7 @@ $darker: #576F72;
 $start: #FFE2C8;
 $end: #ABC9FF;
 $skyblue: #87CEEB;
+$water: #B2C8DF;
 
 * {
     padding: 0;
@@ -108,6 +109,26 @@ $skyblue: #87CEEB;
 
 .path-shrink {
     animation-name: pathShrink;
+    animation-duration: 0.8s;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+.water-stretch {
+    animation-name: waterStretch;
+    animation-duration: 0.2s;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+.water-shrink {
+    animation-name: waterShrink;
     animation-duration: 0.8s;
     animation-direction: normal;
     animation-timing-function: ease-out;
@@ -223,6 +244,32 @@ $skyblue: #87CEEB;
     to {
         transform: scale(0);
         background-color: $skyblue;
+        border-radius: 100%;
+    }
+}
+
+@keyframes waterStretch {
+    from {
+        transform: scale(0);
+        background-color: $end;
+        border-radius: 100%;
+    }
+
+    to {
+        transform: scale(1.1);
+        background-color: $water;
+    }
+}
+
+@keyframes waterShrink {
+    from {
+        transform: scale(1.1);
+        background-color: $water;
+    }
+
+    to {
+        transform: scale(0);
+        background-color: $end;
         border-radius: 100%;
     }
 }
