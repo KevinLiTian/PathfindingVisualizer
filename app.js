@@ -68,23 +68,27 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Event listener for water cell animation
+    // Event listener for water cell animation if w key is pressed
     document.addEventListener("keydown", function (event) {
         if (event.code === 'KeyW') {
-            window.onmousedown = (evt) => {
-                const target = evt.target;
-                if (target.classList.contains('box-container')) {
-                    const box = target.children[0];
-                    box.className = 'box';
-                    box.classList.add('water-stretch');
-                    box.dataset.animation = 'water-stretch';
-                    box.style.animationPlayState = 'running';
-                }
-            };
+            if (ALGORITHM === '') document.querySelector('#message').innerHTML = 'Please Select an Algorithm First';
+            else if (ALGORITHM !== 'DFS' && ALGORITHM !== 'BFS') {
+                window.onmousedown = (evt) => {
+                    const target = evt.target;
+                    if (target.classList.contains('box-container')) {
+                        const box = target.children[0];
+                        box.className = 'box';
+                        box.classList.add('water-stretch');
+                        box.dataset.animation = 'water-stretch';
+                        box.style.animationPlayState = 'running';
+                    }
+                };
+            }
+            else document.querySelector('#message').innerHTML = `${ALGORITHM} does not Support Weighted Path`
         }
     });
 
-    // Remove onmousedown event function
+    // Remove onmousedown event function when w key is lifted
     document.addEventListener("keyup", function (event) {
         if (event.code === 'KeyW') {
             window.onmousedown = () => { };
@@ -171,7 +175,7 @@ function clear() {
     document.querySelector('#algo-btn').disabled = false;
 
     // Clear Message
-    document.querySelector('#message').innerHTML = 'Click on Grid to Add Wall';
+    document.querySelector('#message').innerHTML = 'Click on Grid to Add Wall | Click with W Key Pressed to Add Water';
 }
 
 
