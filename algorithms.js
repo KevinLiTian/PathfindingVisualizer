@@ -4,11 +4,20 @@ import { SRC, DEST, neighbors, walls } from './app.js';
 // Returns a Promise that resolves after "ms" Milliseconds (delay)
 const timer = ms => new Promise(res => setTimeout(res, ms));
 
-/* Node class for search algorithms */
+/* Node Class for Unweighted Search Algorithms (DFS, BFS) */
 class Node {
     constructor(state, parent) {
         this.state = state;
         this.parent = parent;
+    }
+}
+
+/* Node Class for Weighted Search Algorithms */
+class WeightedNode {
+    constructor(state, parent, cost) {
+        this.state = state;
+        this.parent = parent;
+        this.cost = cost;
     }
 }
 
