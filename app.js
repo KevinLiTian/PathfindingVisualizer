@@ -20,6 +20,9 @@ var neighbors = {};
 // Store all walls
 var walls = [];
 
+// Store all waters
+var waters = [];
+
 /* Map Algorithms names to their functions for convenient call */
 const fnMap = {
     "DFS": dfs,
@@ -42,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (box) {
             // Play Animation
             box_container.addEventListener('click', () => {
-                updateWalls(box_container);
                 box.style.animationPlayState = 'running';
             });
 
@@ -179,6 +181,9 @@ function clear() {
     // Clear wall data
     walls = [];
 
+    // Clear water data
+    waters = [];
+
     // Clear Algorithm
     ALGORITHM = '';
 
@@ -244,29 +249,30 @@ function setBoxAnimationState(box) {
         box.classList.add('stretch');
         box.dataset.animation = 'stretch';
     }
+
+    updateWallWater();
 }
 
 
 /* Update which cells are walls */
-function updateWalls(box_container) {
-    // id = 'row_col'
-    const idx = box_container.id.split(/[_]/);
-    const row = parseInt(idx[0]);
-    const col = parseInt(idx[1]);
-    const box = box_container.children[0];
+function updateWallWater() {
+    walls = [];
+    waters = [];
+    document.querySelectorAll('.box-container').forEach(box_container => {
+        const idx = box_container.id.split('_');
+        const row = parseInt(idx[0]);
+        const col = parseInt(idx[1]);
 
-    // Add wall if current box is not stretched yet (not a wall)
-    if (box.dataset.animation === 'stretch') {
-        walls.push([row, col]);
-
-        // Remove wall if current box is already stretched (already a wall)
-    } else if (box.dataset.animation === 'shrink') {
-        const index = JSON.stringify(walls).indexOf(JSON.stringify([row, col]));
-        console.log(index);
-        if (index != -1) { // only splice array when item is found
-            walls.splice(index - 1, 1); // 2nd parameter means remove one item only
+        const box = box_container.children[0];
+        if (box) {
+            if (box.dataset.animation === 'shrink') {
+                walls.push([row, col]);
+            }
+            else if (box.dataset.animation === 'water-shrink') {
+                waters.push([row, col]);
+            }
         }
-    }
+    });
 }
 
 
