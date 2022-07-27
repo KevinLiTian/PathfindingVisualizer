@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         box.classList.add('water-stretch');
                         box.dataset.animation = 'water-stretch';
                         box.style.animationPlayState = 'running';
+                        document.querySelector('#message').innerHTML = `${ALGORITHM} Algorithm | Water Costs 5x More`;
                     }
                 };
             }
@@ -356,4 +357,4 @@ function tableCreate() {
 
 
 // Export
-export { SRC, DEST, neighbors, walls };
+export { SRC, DEST, neighbors, walls, waters };

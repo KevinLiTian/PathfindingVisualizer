@@ -1,5 +1,5 @@
 // Import useful global variables from 'app.js'
-import { SRC, DEST, neighbors, walls } from './app.js';
+import { SRC, DEST, neighbors, walls, waters } from './app.js';
 
 // Returns a Promise that resolves after "ms" Milliseconds (delay)
 const timer = ms => new Promise(res => setTimeout(res, ms));
