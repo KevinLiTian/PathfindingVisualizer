@@ -223,13 +223,17 @@ $water: #B2C8DF;
 }
 
 @keyframes pathStretch {
-    from {
+    0% {
         transform: scale(0);
         background-color: $skyblue;
         border-radius: 100%;
     }
 
-    to {
+    75% {
+        transform: scale(1.4);
+    }
+
+    100% {
         transform: scale(1.1);
         background-color: $end;
     }

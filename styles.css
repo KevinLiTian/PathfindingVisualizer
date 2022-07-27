@@ -353,26 +353,34 @@
 }
 
 @-webkit-keyframes pathStretch {
-  from {
+  0% {
     transform: scale(0);
     background-color: #87CEEB;
     border-radius: 100%;
   }
 
-  to {
+  75% {
+    transform: scale(1.4);
+  }
+
+  100% {
     transform: scale(1.1);
     background-color: #ABC9FF;
   }
 }
 
 @keyframes pathStretch {
-  from {
+  0% {
     transform: scale(0);
     background-color: #87CEEB;
     border-radius: 100%;
   }
 
-  to {
+  75% {
+    transform: scale(1.4);
+  }
+
+  100% {
     transform: scale(1.1);
     background-color: #ABC9FF;
   }

@@ -162,7 +162,7 @@ async function drawPath(path) {
         }
 
         // Add delay between each box animation
-        await timer(0);
+        await timer(10);
     }
 }
 

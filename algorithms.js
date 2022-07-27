@@ -377,7 +377,7 @@ async function astar() {
             });
 
             // Delay
-            await timer(10);
+            await timer(5);
         }
     }
 
