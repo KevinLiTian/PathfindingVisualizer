@@ -2,7 +2,7 @@
 
 This is a visualization tool for common **Pathfinding Algorithms**, built using HTML, CSS (Sass) and JavaScript
 
-- Visit [HERE](https://kevinlitian.github.io/pathfinding/)
+- Visit [HERE](https://kevinlitian.github.io/PathfindingVisualizer/)
 
 ## Inspiration
 
