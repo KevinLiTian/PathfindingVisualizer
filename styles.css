@@ -11,12 +11,10 @@
 .dropdown-item {
   color: #7D9D9C;
 }
-
 .dropdown-item:hover {
   color: #576F72;
   background-color: #F0EBE3;
 }
-
 .dropdown-item:active {
   color: #576F72;
 }
@@ -41,7 +39,6 @@
   font-size: 40px;
   transition: all 0.2s ease-in-out;
 }
-
 .social_icon--link:hover {
   color: #576F72;
 }
@@ -49,138 +46,138 @@
 /* Animation Classes */
 .stretch {
   -webkit-animation-name: stretch;
-  animation-name: stretch;
+          animation-name: stretch;
   -webkit-animation-duration: 0.2s;
-  animation-duration: 0.2s;
+          animation-duration: 0.2s;
   -webkit-animation-direction: normal;
-  animation-direction: normal;
+          animation-direction: normal;
   -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
   -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
+          animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
   -webkit-animation-play-state: paused;
-  animation-play-state: paused;
+          animation-play-state: paused;
 }
 
 .shrink {
   -webkit-animation-name: shrink;
-  animation-name: shrink;
+          animation-name: shrink;
   -webkit-animation-duration: 0.8s;
-  animation-duration: 0.8s;
+          animation-duration: 0.8s;
   -webkit-animation-direction: normal;
-  animation-direction: normal;
+          animation-direction: normal;
   -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
   -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
+          animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
   -webkit-animation-play-state: paused;
-  animation-play-state: paused;
+          animation-play-state: paused;
 }
 
 .search-stretch {
   -webkit-animation-name: searchStretch;
-  animation-name: searchStretch;
+          animation-name: searchStretch;
   -webkit-animation-duration: 0.8s;
-  animation-duration: 0.8s;
+          animation-duration: 0.8s;
   -webkit-animation-direction: normal;
-  animation-direction: normal;
+          animation-direction: normal;
   -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
   -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
+          animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
   -webkit-animation-play-state: paused;
-  animation-play-state: paused;
+          animation-play-state: paused;
 }
 
 .search-shrink {
   -webkit-animation-name: searchShrink;
-  animation-name: searchShrink;
+          animation-name: searchShrink;
   -webkit-animation-duration: 0.8s;
-  animation-duration: 0.8s;
+          animation-duration: 0.8s;
   -webkit-animation-direction: normal;
-  animation-direction: normal;
+          animation-direction: normal;
   -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
   -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
+          animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
   -webkit-animation-play-state: paused;
-  animation-play-state: paused;
+          animation-play-state: paused;
 }
 
 .path-stretch {
   -webkit-animation-name: pathStretch;
-  animation-name: pathStretch;
+          animation-name: pathStretch;
   -webkit-animation-duration: 0.8s;
-  animation-duration: 0.8s;
+          animation-duration: 0.8s;
   -webkit-animation-direction: normal;
-  animation-direction: normal;
+          animation-direction: normal;
   -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
   -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
+          animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
   -webkit-animation-play-state: paused;
-  animation-play-state: paused;
+          animation-play-state: paused;
 }
 
 .path-shrink {
   -webkit-animation-name: pathShrink;
-  animation-name: pathShrink;
+          animation-name: pathShrink;
   -webkit-animation-duration: 0.8s;
-  animation-duration: 0.8s;
+          animation-duration: 0.8s;
   -webkit-animation-direction: normal;
-  animation-direction: normal;
+          animation-direction: normal;
   -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
   -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
+          animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
   -webkit-animation-play-state: paused;
-  animation-play-state: paused;
+          animation-play-state: paused;
 }
 
 .water-stretch {
   -webkit-animation-name: waterStretch;
-  animation-name: waterStretch;
+          animation-name: waterStretch;
   -webkit-animation-duration: 0.2s;
-  animation-duration: 0.2s;
+          animation-duration: 0.2s;
   -webkit-animation-direction: normal;
-  animation-direction: normal;
+          animation-direction: normal;
   -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
   -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
+          animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
   -webkit-animation-play-state: paused;
-  animation-play-state: paused;
+          animation-play-state: paused;
 }
 
 .water-shrink {
   -webkit-animation-name: waterShrink;
-  animation-name: waterShrink;
+          animation-name: waterShrink;
   -webkit-animation-duration: 0.8s;
-  animation-duration: 0.8s;
+          animation-duration: 0.8s;
   -webkit-animation-direction: normal;
-  animation-direction: normal;
+          animation-direction: normal;
   -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
   -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
+          animation-iteration-count: 1;
   -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
   -webkit-animation-play-state: paused;
-  animation-play-state: paused;
+          animation-play-state: paused;
 }
 
 /* Animations */
@@ -190,278 +187,229 @@
     background-color: #F0EBE3;
     border-radius: 100%;
   }
-
   50% {
     background-color: #E4DCCF;
   }
-
   100% {
     transform: scale(1.1);
     background-color: #7D9D9C;
   }
 }
-
 @keyframes stretch {
   0% {
     transform: scale(0);
     background-color: #F0EBE3;
     border-radius: 100%;
   }
-
   50% {
     background-color: #E4DCCF;
   }
-
   100% {
     transform: scale(1.1);
     background-color: #7D9D9C;
   }
 }
-
 @-webkit-keyframes shrink {
   0% {
     transform: scale(1.1);
     background-color: #7D9D9C;
   }
-
   50% {
     background-color: #E4DCCF;
   }
-
   100% {
     transform: scale(0);
     background-color: #F0EBE3;
     border-radius: 100%;
   }
 }
-
 @keyframes shrink {
   0% {
     transform: scale(1.1);
     background-color: #7D9D9C;
   }
-
   50% {
     background-color: #E4DCCF;
   }
-
   100% {
     transform: scale(0);
     background-color: #F0EBE3;
     border-radius: 100%;
   }
 }
-
 @-webkit-keyframes searchStretch {
   0% {
     transform: scale(0);
     background-color: white;
     border-radius: 100%;
   }
-
   1% {
     transform: scale(1.1);
     background-color: #FFE2C8;
   }
-
   3% {
     transform: scale(1.1);
     background-color: #FFE2C8;
   }
-
   4% {
     transform: scale(0);
     background-color: white;
     border-radius: 100%;
   }
-
   50% {
     background-color: #F0EBE3;
   }
-
   100% {
     transform: scale(1.1);
     background-color: #E4DCCF;
   }
 }
-
 @keyframes searchStretch {
   0% {
     transform: scale(0);
     background-color: white;
     border-radius: 100%;
   }
-
   1% {
     transform: scale(1.1);
     background-color: #FFE2C8;
   }
-
   3% {
     transform: scale(1.1);
     background-color: #FFE2C8;
   }
-
   4% {
     transform: scale(0);
     background-color: white;
     border-radius: 100%;
   }
-
   50% {
     background-color: #F0EBE3;
   }
-
   100% {
     transform: scale(1.1);
     background-color: #E4DCCF;
   }
 }
-
 @-webkit-keyframes searchShrink {
   0% {
     transform: scale(1.1);
     background-color: #E4DCCF;
   }
-
   50% {
     background-color: #F0EBE3;
   }
-
   100% {
     transform: scale(0);
     background-color: white;
     border-radius: 100%;
   }
 }
-
 @keyframes searchShrink {
   0% {
     transform: scale(1.1);
     background-color: #E4DCCF;
   }
-
   50% {
     background-color: #F0EBE3;
   }
-
   100% {
     transform: scale(0);
     background-color: white;
     border-radius: 100%;
   }
 }
-
 @-webkit-keyframes pathStretch {
   0% {
     transform: scale(0);
     background-color: #87CEEB;
     border-radius: 100%;
   }
-
   75% {
     transform: scale(1.4);
   }
-
   100% {
     transform: scale(1.1);
     background-color: #ABC9FF;
   }
 }
-
 @keyframes pathStretch {
   0% {
     transform: scale(0);
     background-color: #87CEEB;
     border-radius: 100%;
   }
-
   75% {
     transform: scale(1.4);
   }
-
   100% {
     transform: scale(1.1);
     background-color: #ABC9FF;
   }
 }
-
 @-webkit-keyframes pathShrink {
   from {
     transform: scale(1.1);
     background-color: #ABC9FF;
   }
-
   to {
     transform: scale(0);
     background-color: #87CEEB;
     border-radius: 100%;
   }
 }
-
 @keyframes pathShrink {
   from {
     transform: scale(1.1);
     background-color: #ABC9FF;
   }
-
   to {
     transform: scale(0);
     background-color: #87CEEB;
     border-radius: 100%;
   }
 }
-
 @-webkit-keyframes waterStretch {
   from {
     transform: scale(0);
     background-color: #ABC9FF;
     border-radius: 100%;
   }
-
   to {
     transform: scale(1.1);
     background-color: #B2C8DF;
   }
 }
-
 @keyframes waterStretch {
   from {
     transform: scale(0);
     background-color: #ABC9FF;
     border-radius: 100%;
   }
-
   to {
     transform: scale(1.1);
     background-color: #B2C8DF;
   }
 }
-
 @-webkit-keyframes waterShrink {
   from {
     transform: scale(1.1);
     background-color: #B2C8DF;
   }
-
   to {
     transform: scale(0);
     background-color: #ABC9FF;
     border-radius: 100%;
   }
 }
-
 @keyframes waterShrink {
   from {
     transform: scale(1.1);
     background-color: #B2C8DF;
   }
-
   to {
     transform: scale(0);
     background-color: #ABC9FF;
     border-radius: 100%;
   }
-}
-
-/*# sourceMappingURL=styles.css.map */
+}/*# sourceMappingURL=styles.css.map */
