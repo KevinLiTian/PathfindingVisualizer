@@ -53,9 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Pre-process data
-    preprocess();
-
     // Event Listeners for Visualize Button
     document.querySelector('#visualize').addEventListener('click', selectAlgorithm);
 
@@ -108,6 +105,9 @@ document.addEventListener('DOMContentLoaded', function () {
             window.onmousedown = () => { };
         }
     });
+
+    // Pre-process data
+    preprocess();
 });
 
 
