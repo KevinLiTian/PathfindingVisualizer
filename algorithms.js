@@ -21,6 +21,54 @@ class WeightedNode {
     }
 }
 
+/* PriorityQueue class for storing Weighted Nodes */
+class PriorityQueue {
+
+    // An array is used to implement priority
+    constructor() {
+        this.items = [];
+    }
+
+    // enqueue function to add element to the queue as per cost
+    enqueue(WeightedNode) {
+        // creating object from queue element
+        var contain = false;
+
+        // iterating through the entire
+        // item array to add element at the
+        // correct location of the Queue
+        for (var i = 0; i < this.items.length; i++) {
+            if (this.items[i].cost > WeightedNode.cost) {
+                // Once the correct location is found it is
+                // enqueued
+                this.items.splice(i, 0, WeightedNode);
+                contain = true;
+                break;
+            }
+        }
+
+        // if the element have the highest priority
+        // it is added at the end of the queue
+        if (!contain) {
+            this.items.push(WeightedNode);
+        }
+    }
+
+    // dequeue method to remove element from the queue
+    dequeue() {
+        // return the dequeued element and remove it
+        // if the queue is empty returns Underflow
+        if (this.isEmpty()) return "Underflow";
+        return this.items.shift();
+    }
+
+    // isEmpty function
+    isEmpty() {
+        // return true if the queue is empty.
+        return this.items.length == 0;
+    }
+}
+
 
 /* ----------------------------- Algorithms ------------------------------ */
 
@@ -181,6 +229,12 @@ function exists(arr1, arr2) {
         return true;
     }
     return false;
+}
+
+
+/* Calculates the Manhattan distance between two cells */
+function ManhattanDistance(cell1, cell2) {
+    return Math.abs(cell1[0] - cell2[0]) + Math.abs(cell1[1] - cell2[1])
 }
 
 
