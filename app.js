@@ -8,8 +8,8 @@ const TOTAL_ROW = 20;
 const TOTAL_COL = 50;
 
 // Start point and end point of the path
-const SRC = [9, 5];
-const DEST = [9, 44];
+const SRC = [9, 10];
+const DEST = [9, 40];
 
 // Animation Name
 var ALGORITHM = '';

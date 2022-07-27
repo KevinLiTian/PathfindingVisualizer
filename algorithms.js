@@ -1,6 +1,9 @@
 // Import useful global variables from 'app.js'
 import { SRC, DEST, neighbors, walls, waters } from './app.js';
 
+// Water Cost Constant
+const WATER_COST = 5;
+
 // Returns a Promise that resolves after "ms" Milliseconds (delay)
 const timer = ms => new Promise(res => setTimeout(res, ms));
 
@@ -191,8 +194,10 @@ async function greedy() {
         if (!exists(walls, idx)) {
             let cost = 1;
             if (exists(waters, idx)) {
-                cost = 5;
+                cost = WATER_COST;
             }
+
+            // Only considers Current Cost and Future Cost
             let wNode = new WeightedNode(idx, null, cost + ManhattanDistance(idx, DEST));
             frontier.enqueue(wNode);
         }
@@ -227,8 +232,10 @@ async function greedy() {
                 if ((!exists(searched, idx)) && !exists(walls, idx)) {
                     let cost = 1;
                     if (exists(waters, idx)) {
-                        cost = 5;
+                        cost = WATER_COST;
                     }
+
+                    // Only considers Current Cost and Future Cost
                     let wNode = new WeightedNode(idx, curNode, cost + ManhattanDistance(idx, DEST));
                     frontier.enqueue(wNode);
                 }
@@ -244,14 +251,137 @@ async function greedy() {
 
 
 /* Dijkstra's Algorithm */
-function dijkstra() {
+async function dijkstra() {
 
+    // Use a Custom Priority Queue to Store Weighted Nodes
+    let frontier = new PriorityQueue();
+
+    // First push in source node neighbors
+    neighbors[SRC].forEach(idx => {
+        if (!exists(walls, idx)) {
+            let cost = 1;
+            if (exists(waters, idx)) {
+                cost = WATER_COST;
+            }
+
+            // Only considers Past Cost and Current Cost
+            let wNode = new WeightedNode(idx, null, cost);
+            frontier.enqueue(wNode);
+        }
+    });
+
+    // Store all searched nodes to prevent infinite search
+    let searched = [];
+    searched.push(SRC);
+
+    // Traverse until no node can be found
+    while (!frontier.isEmpty()) {
+
+        // Search the next node
+        let curNode = frontier.dequeue();
+
+        // Search this node only if it hasn't been searched
+        if (!exists(searched, curNode.state)) {
+
+            // Mark this node as searched
+            searched.push(curNode.state);
+
+            // Check if current node is the destination
+            if (JSON.stringify(curNode.state) === JSON.stringify(DEST)) {
+                return backTrack(curNode);
+            }
+
+            // Animate the current node
+            animateSearch(curNode.state);
+
+            // Push all the neighbors of current node if they are not walls and they haven't been searched
+            neighbors[curNode.state].forEach(idx => {
+                if ((!exists(searched, idx)) && !exists(walls, idx)) {
+                    let cost = 1;
+                    if (exists(waters, idx)) {
+                        cost = WATER_COST;
+                    }
+
+                    // Only considers Past Cost and Current Cost
+                    let wNode = new WeightedNode(idx, curNode, curNode.cost + cost);
+                    frontier.enqueue(wNode);
+                }
+            });
+
+            // Delay
+            await timer(0);
+        }
+    }
+
+    return null;
 }
 
 
 /* A* Algorithm */
-function astar() {
+async function astar() {
 
+    // Use a Custom Priority Queue to Store Weighted Nodes
+    let frontier = new PriorityQueue();
+
+    // First push in source node neighbors
+    neighbors[SRC].forEach(idx => {
+        if (!exists(walls, idx)) {
+            let cost = 1;
+            if (exists(waters, idx)) {
+                cost = WATER_COST;
+            }
+
+            // Consider Past Cost, Current Cost and Future Cost
+            let wNode = new WeightedNode(idx, null, cost + ManhattanDistance(idx, DEST));
+            frontier.enqueue(wNode);
+        }
+    });
+
+    // Store all searched nodes to prevent infinite search
+    let searched = [];
+    searched.push(SRC);
+
+    // Traverse until no node can be found
+    while (!frontier.isEmpty()) {
+
+        // Search the next node
+        let curNode = frontier.dequeue();
+
+        // Search this node only if it hasn't been searched
+        if (!exists(searched, curNode.state)) {
+
+            // Mark this node as searched
+            searched.push(curNode.state);
+
+            // Check if current node is the destination
+            if (JSON.stringify(curNode.state) === JSON.stringify(DEST)) {
+                return backTrack(curNode);
+            }
+
+            // Animate the current node
+            animateSearch(curNode.state);
+
+            // Push all the neighbors of current node if they are not walls and they haven't been searched
+            neighbors[curNode.state].forEach(idx => {
+                if ((!exists(searched, idx)) && !exists(walls, idx)) {
+                    let cost = 1;
+                    if (exists(waters, idx)) {
+                        cost = WATER_COST;
+                    }
+
+                    // Consider Past Cost, Current Cost and Future Cost
+                    let totalCost = curNode.cost + cost + ManhattanDistance(idx, DEST);
+                    let wNode = new WeightedNode(idx, curNode, totalCost);
+                    frontier.enqueue(wNode);
+                }
+            });
+
+            // Delay
+            await timer(10);
+        }
+    }
+
+    return null;
 }
 
 
