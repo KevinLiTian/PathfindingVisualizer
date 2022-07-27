@@ -83,7 +83,7 @@ async function dfs() {
         if (!exists(walls, idx)) {
             stackFrontier.push(new Node(idx, null));
         }
-    })
+    });
 
     // Store all searched nodes to prevent infinite search
     let searched = [];
@@ -95,7 +95,10 @@ async function dfs() {
         // Search the next node
         let curNode = stackFrontier.pop();
 
+        // Search this node only if it hasn't been searched
         if (!exists(searched, curNode.state)) {
+
+            // Mark this node as searched
             searched.push(curNode.state);
 
             // Check if current node is the destination
@@ -111,7 +114,7 @@ async function dfs() {
                 if ((!exists(searched, idx)) && !exists(walls, idx)) {
                     stackFrontier.push(new Node(idx, curNode));
                 }
-            })
+            });
 
             // Delay
             await timer(10);
@@ -134,7 +137,7 @@ async function bfs() {
         if (!exists(walls, idx)) {
             queueFrontier.push(new Node(idx, null));
         }
-    })
+    });
 
     // Store all searched nodes to prevent infinite search
     let searched = [];
@@ -146,7 +149,10 @@ async function bfs() {
         // Search the next node
         let curNode = queueFrontier.shift();
 
+        // Search this node only if it hasn't been searched
         if (!exists(searched, curNode.state)) {
+
+            // Mark this node as searched
             searched.push(curNode.state);
 
             // Check if current node is the destination
@@ -162,10 +168,10 @@ async function bfs() {
                 if ((!exists(searched, idx)) && !exists(walls, idx)) {
                     queueFrontier.push(new Node(idx, curNode));
                 }
-            })
+            });
 
             // Delay
-            await timer(10);
+            await timer(0);
         }
     }
 
@@ -175,8 +181,65 @@ async function bfs() {
 
 
 /* Greedy Best-First Search */
-function greedy() {
+async function greedy() {
 
+    // Use a Custom Priority Queue to Store Weighted Nodes
+    let frontier = new PriorityQueue();
+
+    // First push in source node neighbors
+    neighbors[SRC].forEach(idx => {
+        if (!exists(walls, idx)) {
+            let cost = 1;
+            if (exists(waters, idx)) {
+                cost = 5;
+            }
+            let wNode = new WeightedNode(idx, null, cost + ManhattanDistance(idx, DEST));
+            frontier.enqueue(wNode);
+        }
+    });
+
+    // Store all searched nodes to prevent infinite search
+    let searched = [];
+    searched.push(SRC);
+
+    // Traverse until no node can be found
+    while (!frontier.isEmpty()) {
+
+        // Search the next node
+        let curNode = frontier.dequeue();
+
+        // Search this node only if it hasn't been searched
+        if (!exists(searched, curNode.state)) {
+
+            // Mark this node as searched
+            searched.push(curNode.state);
+
+            // Check if current node is the destination
+            if (JSON.stringify(curNode.state) === JSON.stringify(DEST)) {
+                return backTrack(curNode);
+            }
+
+            // Animate the current node
+            animateSearch(curNode.state);
+
+            // Push all the neighbors of current node if they are not walls and they haven't been searched
+            neighbors[curNode.state].forEach(idx => {
+                if ((!exists(searched, idx)) && !exists(walls, idx)) {
+                    let cost = 1;
+                    if (exists(waters, idx)) {
+                        cost = 5;
+                    }
+                    let wNode = new WeightedNode(idx, curNode, cost + ManhattanDistance(idx, DEST));
+                    frontier.enqueue(wNode);
+                }
+            });
+
+            // Delay
+            await timer(30);
+        }
+    }
+
+    return null;
 }
 
 
@@ -212,10 +275,12 @@ function animateSearch(idx) {
     const id = `${idx[0]}_${idx[1]}`;
     const box = document.getElementById(id).children[0];
     if (box) {
-        box.classList.remove('stretch');
-        box.classList.add('search-stretch');
-        box.dataset.animation = 'search-stretch';
-        box.style.animationPlayState = 'running';
+        if (!box.classList.contains('water-shrink')) {
+            box.className = 'box';
+            box.classList.add('search-stretch');
+            box.dataset.animation = 'search-stretch';
+            box.style.animationPlayState = 'running';
+        }
     }
 }
 

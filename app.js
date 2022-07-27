@@ -27,7 +27,7 @@ var waters = [];
 const fnMap = {
     "DFS": dfs,
     "BFS": bfs,
-    "greedy": greedy,
+    "Greedy": greedy,
     "Dijkstra's": dijkstra,
     "A*": astar
 };
@@ -126,6 +126,8 @@ async function selectAlgorithm() {
         document.querySelector('#algo-btn').disabled = true;
         const path = await fnMap[ALGORITHM]();
 
+        console.log(path);
+
         // There is a valid path
         if (path) {
             document.querySelector('#message').innerHTML = 'Path Found!';
@@ -153,14 +155,14 @@ async function drawPath(path) {
 
         // Make sure there is a box to animate
         if (box) {
-            box.classList.remove('search-shrink');
+            box.className = 'box';
             box.classList.add('path-stretch');
             box.dataset.animation = 'path-stretch';
             box.style.animationPlayState = 'running';
         }
 
         // Add delay between each box animation
-        await timer(1);
+        await timer(0);
     }
 }
 
@@ -171,10 +173,7 @@ function clear() {
     // Clear boxes
     document.querySelectorAll('.box-container').forEach(box_container => {
         const box = box_container.children[0];
-        if (box && (box.dataset.animation === 'shrink'
-            || box.dataset.animation === 'search-shrink'
-            || box.dataset.animation === 'path-shrink'
-            || box.dataset.animation === 'water-shrink')) {
+        if (box && box.dataset.animation.includes('shrink')) {
             box.style.animationPlayState = 'running';
         }
     });
