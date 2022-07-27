@@ -65,6 +65,17 @@ document.addEventListener('DOMContentLoaded', function () {
         algo.addEventListener('click', () => {
             ALGORITHM = algo.dataset.algo;
             document.querySelector('#message').innerHTML = `${ALGORITHM} Algorithm`
+
+            // Remove all water if ALGORITHM is BFS or DFS
+            if (ALGORITHM === 'BFS' || ALGORITHM === 'DFS') {
+                const water = document.querySelectorAll('.water-shrink');
+                if (water.length > 0) {
+                    water.forEach(box => {
+                        box.style.animationPlayState = 'running';
+                    });
+                    document.querySelector('#message').innerHTML = `${ALGORITHM} Algorithm | Not Weighted`;
+                }
+            }
         });
     });
 
@@ -105,6 +116,7 @@ async function selectAlgorithm() {
         document.querySelector('#message').innerHTML = 'Please Select an Algorithm First';
 
     } else { // Call corresponding algorithm using fnMap, then draw path
+
         document.querySelector('#message').innerHTML = `Visualizing ${ALGORITHM} Algorithm`;
         document.querySelector('#visualize').disabled = true;
         document.querySelector('#clear').disabled = true;
