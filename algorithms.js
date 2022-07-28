@@ -2,7 +2,7 @@
 import { SRC, DEST, neighbors, walls, waters } from './app.js';
 
 // Water Cost Constant
-const WATER_COST = 5;
+const WATER_COST = 10;
 
 // Returns a Promise that resolves after "ms" Milliseconds (delay)
 const timer = ms => new Promise(res => setTimeout(res, ms));
@@ -17,10 +17,11 @@ class Node {
 
 /* Node Class for Weighted Search Algorithms */
 class WeightedNode {
-    constructor(state, parent, cost) {
+    constructor(state, parent, cost, heuristicCost = 0) {
         this.state = state;
         this.parent = parent;
         this.cost = cost;
+        this.heuristicCost = heuristicCost;
     }
 }
 
@@ -40,8 +41,9 @@ class PriorityQueue {
         // iterating through the entire
         // item array to add element at the
         // correct location of the Queue
-        for (var i = 0; i < this.items.length; i++) {
-            if (this.items[i].cost > WeightedNode.cost) {
+        for (let i = 0; i < this.items.length; i++) {
+            const item = this.items[i];
+            if (item.cost + item.heuristicCost > WeightedNode.cost + WeightedNode.heuristicCost) {
                 // Once the correct location is found it is
                 // enqueued
                 this.items.splice(i, 0, WeightedNode);
@@ -332,7 +334,7 @@ async function astar() {
             }
 
             // Consider Past Cost, Current Cost and Future Cost
-            let wNode = new WeightedNode(idx, null, cost + ManhattanDistance(idx, DEST));
+            let wNode = new WeightedNode(idx, null, cost, HeuristicDistance(idx, DEST));
             frontier.enqueue(wNode);
         }
     });
@@ -370,8 +372,7 @@ async function astar() {
                     }
 
                     // Consider Past Cost, Current Cost and Future Cost
-                    let totalCost = curNode.cost + cost + ManhattanDistance(idx, DEST);
-                    let wNode = new WeightedNode(idx, curNode, totalCost);
+                    let wNode = new WeightedNode(idx, curNode, curNode.cost + cost, HeuristicDistance(idx, DEST));
                     frontier.enqueue(wNode);
                 }
             });
@@ -430,6 +431,12 @@ function exists(arr1, arr2) {
 /* Calculates the Manhattan distance between two cells */
 function ManhattanDistance(cell1, cell2) {
     return Math.abs(cell1[0] - cell2[0]) + Math.abs(cell1[1] - cell2[1])
+}
+
+
+/* Calculates Heuristic Distance between two cells (shorter than Manhattan Distance) */
+function HeuristicDistance(cell1, cell2) {
+    return Math.sqrt(Math.pow(cell1[0] - cell2[0], 2) + Math.pow(cell1[1] - cell2[1], 2));
 }
 
 

@@ -126,8 +126,6 @@ async function selectAlgorithm() {
         document.querySelector('#algo-btn').disabled = true;
         const path = await fnMap[ALGORITHM]();
 
-        console.log(path);
-
         // There is a valid path
         if (path) {
             document.querySelector('#message').innerHTML = 'Path Found!';
