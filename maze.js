@@ -1,6 +1,6 @@
 import { TOTAL_ROW, TOTAL_COL } from './app.js';
 
-
+lakdjfa;lskdjfaldkj;
 /* Maze Generator */
 class Maze {
     constructor() {
