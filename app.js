@@ -3,6 +3,9 @@
 // Import all algorithms from 'algorithms.js'
 import { dfs, bfs, greedy, dijkstra, astar, timer } from './algorithms.js';
 
+// Import Maze Generator from 'maze.js'
+import { Maze } from './maze.js';
+
 // Total number of rows and columns of grid
 const TOTAL_ROW = 20;
 const TOTAL_COL = 50;
@@ -354,4 +357,4 @@ function tableCreate() {
 
 
 // Export
-export { SRC, DEST, neighbors, walls, waters };
+export { SRC, DEST, neighbors, walls, waters, TOTAL_ROW, TOTAL_COL };
