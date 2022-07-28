@@ -124,6 +124,12 @@ async function generateMaze() {
     const maze = new Maze();
     maze.create_maze(SRC[0], SRC[1]);
 
+    // Disable Buttons
+    document.querySelector('#visualize').disabled = true;
+    document.querySelector('#clear').disabled = true;
+    document.querySelector('#algo-btn').disabled = true;
+    document.querySelector('#maze').disabled = true;
+
     // Clear boxes
     document.querySelectorAll('.box-container').forEach(box_container => {
         const box = box_container.children[0];
@@ -149,6 +155,13 @@ async function generateMaze() {
             await timer(0);
         }
     }
+
+    // Just to enforce the clear button is disabled before all animation finishes
+    await timer(1000);
+
+    document.querySelector('#clear').disabled = false;
+    document.querySelector('#visualize').disabled = false;
+    document.querySelector('#algo-btn').disabled = false;
 }
 
 
@@ -162,9 +175,14 @@ async function selectAlgorithm() {
     } else { // Call corresponding algorithm using fnMap, then draw path
 
         document.querySelector('#message').innerHTML = `Visualizing ${ALGORITHM} Algorithm`;
+
+        // Disable buttons
         document.querySelector('#visualize').disabled = true;
         document.querySelector('#clear').disabled = true;
         document.querySelector('#algo-btn').disabled = true;
+        document.querySelector('#maze').disabled = true;
+
+        // Call Algorithm
         const path = await fnMap[ALGORITHM]();
 
         // There is a valid path
@@ -223,6 +241,7 @@ function clear() {
     // Enable buttons
     document.querySelector('#visualize').disabled = false;
     document.querySelector('#algo-btn').disabled = false;
+    document.querySelector('#maze').disabled = false;
 
     // Clear Message
     document.querySelector('#message').innerHTML = 'Click on Grid to Add Wall | Click with W Key Pressed to Add Water';
