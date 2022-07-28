@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         box.classList.add('water-stretch');
                         box.dataset.animation = 'water-stretch';
                         box.style.animationPlayState = 'running';
-                        document.querySelector('#message').innerHTML = `${ALGORITHM} Algorithm | Water Costs 5x More`;
+                        document.querySelector('#message').innerHTML = `${ALGORITHM} Algorithm | Water Costs 10x More`;
                     }
                 };
             }
