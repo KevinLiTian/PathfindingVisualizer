@@ -138,27 +138,47 @@ async function generateMaze() {
         }
     });
 
-    // Draw Maze
-    for (let i = 0; i < TOTAL_ROW; i++) {
-        for (let j = 0; j < TOTAL_COL; j++) {
+    // Draw Maze (Some fun using Random)
+    if (Math.random() >= 0.5) {
+        for (let i = 0; i < TOTAL_ROW; i++) {
+            for (let j = 0; j < TOTAL_COL; j++) {
 
-            // True stands for a wall && Not the destination
-            if (maze.cells[i][j] && (JSON.stringify([i, j]) !== JSON.stringify(DEST))) {
-                const id = `${i}_${j}`;
-                const box = document.getElementById(id).children[0];
-                if (box) {
-                    box.style.animationPlayState = 'running';
+                // True stands for a wall && Not the destination
+                if (maze.cells[i][j] && (JSON.stringify([i, j]) !== JSON.stringify(DEST))) {
+                    const id = `${i}_${j}`;
+                    const box = document.getElementById(id).children[0];
+                    if (box) {
+                        box.style.animationPlayState = 'running';
+                    }
                 }
-            }
 
-            // Delay
-            await timer(0);
+                // Delay
+                await timer(0);
+            }
+        }
+    } else {
+        for (let j = 0; j < TOTAL_COL; j++) {
+            for (let i = 0; i < TOTAL_ROW; i++) {
+
+                // True stands for a wall && Not the destination
+                if (maze.cells[i][j] && (JSON.stringify([i, j]) !== JSON.stringify(DEST))) {
+                    const id = `${i}_${j}`;
+                    const box = document.getElementById(id).children[0];
+                    if (box) {
+                        box.style.animationPlayState = 'running';
+                    }
+                }
+
+                // Delay
+                await timer(0);
+            }
         }
     }
 
     // Just to enforce the clear button is disabled before all animation finishes
     await timer(1000);
 
+    // Enable all except Maze Button
     document.querySelector('#clear').disabled = false;
     document.querySelector('#visualize').disabled = false;
     document.querySelector('#algo-btn').disabled = false;
@@ -196,6 +216,7 @@ async function selectAlgorithm() {
         // Just to enforce the clear button is disabled before all animation finishes
         await timer(1000);
 
+        // Only Enable Clear Button
         document.querySelector('#clear').disabled = false;
     }
 }
