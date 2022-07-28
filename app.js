@@ -118,11 +118,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 /* Generate Maze */
-function generateMaze() {
+async function generateMaze() {
+
+    // Create Maze
     const maze = new Maze();
     maze.create_maze(SRC[0], SRC[1]);
-}
 
+    // Clear boxes
+    document.querySelectorAll('.box-container').forEach(box_container => {
+        const box = box_container.children[0];
+        if (box && box.dataset.animation.includes('shrink')) {
+            box.style.animationPlayState = 'running';
+        }
+    });
+
+    // Draw Maze
+    for (let i = 0; i < TOTAL_ROW; i++) {
+        for (let j = 0; j < TOTAL_COL; j++) {
+
+            // True stands for a wall && Not the destination
+            if (maze.cells[i][j] && (JSON.stringify([i, j]) !== JSON.stringify(DEST))) {
+                const id = `${i}_${j}`;
+                const box = document.getElementById(id).children[0];
+                if (box) {
+                    box.style.animationPlayState = 'running';
+                }
+            }
+
+            // Delay
+            await timer(0);
+        }
+    }
+}
 
 
 /* Select the algorithm to run */
