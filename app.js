@@ -3,6 +3,9 @@
 // Import all algorithms from 'algorithms.js'
 import { dfs, bfs, greedy, dijkstra, astar, timer } from './algorithms.js';
 
+// Import Maze Generator from 'maze.js'
+import { Maze } from './maze.js';
+
 // Total number of rows and columns of grid
 const TOTAL_ROW = 20;
 const TOTAL_COL = 50;
@@ -59,6 +62,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Event Listeners for Clear Button
     document.querySelector('#clear').addEventListener('click', clear);
 
+    // Event Listener for Maze Button
+    document.querySelector('#maze').addEventListener('click', generateMaze);
+
     // Event Listeners for four Algorithm Buttons
     document.querySelectorAll('.dropdown-item').forEach(algo => {
         algo.addEventListener('click', () => {
@@ -111,6 +117,74 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+/* Generate Maze */
+async function generateMaze() {
+
+    // Create Maze
+    const maze = new Maze();
+    maze.create_maze(SRC[0], SRC[1]);
+
+    // Disable Buttons
+    document.querySelector('#visualize').disabled = true;
+    document.querySelector('#clear').disabled = true;
+    document.querySelector('#algo-btn').disabled = true;
+    document.querySelector('#maze').disabled = true;
+
+    // Clear boxes
+    document.querySelectorAll('.box-container').forEach(box_container => {
+        const box = box_container.children[0];
+        if (box && box.dataset.animation.includes('shrink')) {
+            box.style.animationPlayState = 'running';
+        }
+    });
+
+    // Draw Maze (Some fun using Random)
+    if (Math.random() >= 0.5) {
+        for (let i = 0; i < TOTAL_ROW; i++) {
+            for (let j = 0; j < TOTAL_COL; j++) {
+
+                // True stands for a wall && Not the destination
+                if (maze.cells[i][j] && (JSON.stringify([i, j]) !== JSON.stringify(DEST))) {
+                    const id = `${i}_${j}`;
+                    const box = document.getElementById(id).children[0];
+                    if (box) {
+                        box.style.animationPlayState = 'running';
+                    }
+                }
+
+                // Delay
+                await timer(0);
+            }
+        }
+    } else {
+        for (let j = 0; j < TOTAL_COL; j++) {
+            for (let i = 0; i < TOTAL_ROW; i++) {
+
+                // True stands for a wall && Not the destination
+                if (maze.cells[i][j] && (JSON.stringify([i, j]) !== JSON.stringify(DEST))) {
+                    const id = `${i}_${j}`;
+                    const box = document.getElementById(id).children[0];
+                    if (box) {
+                        box.style.animationPlayState = 'running';
+                    }
+                }
+
+                // Delay
+                await timer(0);
+            }
+        }
+    }
+
+    // Just to enforce the clear button is disabled before all animation finishes
+    await timer(1000);
+
+    // Enable all except Maze Button
+    document.querySelector('#clear').disabled = false;
+    document.querySelector('#visualize').disabled = false;
+    document.querySelector('#algo-btn').disabled = false;
+}
+
+
 /* Select the algorithm to run */
 async function selectAlgorithm() {
 
@@ -121,9 +195,14 @@ async function selectAlgorithm() {
     } else { // Call corresponding algorithm using fnMap, then draw path
 
         document.querySelector('#message').innerHTML = `Visualizing ${ALGORITHM} Algorithm`;
+
+        // Disable buttons
         document.querySelector('#visualize').disabled = true;
         document.querySelector('#clear').disabled = true;
         document.querySelector('#algo-btn').disabled = true;
+        document.querySelector('#maze').disabled = true;
+
+        // Call Algorithm
         const path = await fnMap[ALGORITHM]();
 
         // There is a valid path
@@ -137,6 +216,7 @@ async function selectAlgorithm() {
         // Just to enforce the clear button is disabled before all animation finishes
         await timer(1000);
 
+        // Only Enable Clear Button
         document.querySelector('#clear').disabled = false;
     }
 }
@@ -176,18 +256,13 @@ function clear() {
         }
     });
 
-    // Clear wall data
-    walls = [];
-
-    // Clear water data
-    waters = [];
-
     // Clear Algorithm
     ALGORITHM = '';
 
     // Enable buttons
     document.querySelector('#visualize').disabled = false;
     document.querySelector('#algo-btn').disabled = false;
+    document.querySelector('#maze').disabled = false;
 
     // Clear Message
     document.querySelector('#message').innerHTML = 'Click on Grid to Add Wall | Click with W Key Pressed to Add Water';
@@ -354,4 +429,4 @@ function tableCreate() {
 
 
 // Export
-export { SRC, DEST, neighbors, walls, waters };
+export { SRC, DEST, neighbors, walls, waters, TOTAL_ROW, TOTAL_COL };
