@@ -62,6 +62,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Event Listeners for Clear Button
     document.querySelector('#clear').addEventListener('click', clear);
 
+    // Event Listener for Maze Button
+    document.querySelector('#maze').addEventListener('click', generateMaze);
+
     // Event Listeners for four Algorithm Buttons
     document.querySelectorAll('.dropdown-item').forEach(algo => {
         algo.addEventListener('click', () => {
@@ -112,6 +115,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // Pre-process data
     preprocess();
 });
+
+
+/* Generate Maze */
+function generateMaze() {
+    const maze = new Maze();
+    maze.create_maze(SRC[0], SRC[1]);
+}
+
 
 
 /* Select the algorithm to run */
@@ -178,12 +189,6 @@ function clear() {
             box.style.animationPlayState = 'running';
         }
     });
-
-    // Clear wall data
-    walls = [];
-
-    // Clear water data
-    waters = [];
 
     // Clear Algorithm
     ALGORITHM = '';
