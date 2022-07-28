@@ -2,7 +2,7 @@
 
 This is a visualization tool for common **Pathfinding Algorithms**, built using HTML, CSS (Sass) and JavaScript
 
-- Visit [HERE](https://kevinlitian.github.io/PathfindingVisualizer/)
+-  https://kevinlitian.github.io/PathfindingVisualizer/
 
 ## Inspiration
 
@@ -18,7 +18,7 @@ Moreover, I am a League of Legends player, and I got to know that when I'm click
 | Breadth-First Search (BFS) |                 Follow multiple directions at the same time                 |           YES           |          NO           |
 |  Greedy Best-First Search  | At any time, choose the state that is closest to the goal as the next state |           NO            |          YES          |
 |    Dijkstra's Algorithm    |                 Follow multiple directions at the same time                 |           YES           |          YES          |
-|       A\* Algorithm        |              Search mainly in the direction of the destination              |  YES (Good Heuristic)   |          YES          |
+|       A\* Algorithm        |              Search mainly in the direction of the destination              |  YES  (Good Heuristic)  |          YES          |
 
 ## Contact ME
 
