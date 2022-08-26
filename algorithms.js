@@ -8,7 +8,7 @@ const WATER_COST = 10;
 const timer = (ms) => new Promise((res) => setTimeout(res, ms));
 
 const SpeedMap = {
-    "Slow": () => timer(100),
+    "Slow": () => timer(200),
     "Medium": () => timer(50),
     "Fast": () => timer(10)
 };
