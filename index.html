@@ -36,17 +36,30 @@
                 <div class="dropdown col-4 text-end">
                     <button class="btn btn-secondary me-2" id="clear">Clear</button>
                     <button class="btn btn-secondary me-2" id="maze">Maze</button>
-                    <button class="btn btn-secondary dropdown-toggle" id="algo-btn" type="button"
-                        data-bs-toggle="dropdown">
-                        Algorithm
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#" data-algo="DFS">DFS</a></li>
-                        <li><a class="dropdown-item" href="#" data-algo="BFS">BFS</a></li>
-                        <li><a class="dropdown-item" href="#" data-algo="Greedy">Greedy</a></li>
-                        <li><a class="dropdown-item" href="#" data-algo="Dijkstra's">Dijkstra's</a></li>
-                        <li><a class="dropdown-item" href="#" data-algo="A*">A*</a></li>
-                    </ul>
+                    <div class="d-inline me-2">
+                        <button class="btn btn-secondary dropdown-toggle" id="speed-btn" type="button"
+                            data-bs-toggle="dropdown">
+                            Speed
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item speed-sel" href="#" data-speed="Slow">Slow</a></li>
+                            <li><a class="dropdown-item speed-sel" href="#" data-speed="Medium">Medium</a></li>
+                            <li><a class="dropdown-item speed-sel" href="#" data-speed="Fast">Fast</a></li>
+                        </ul>
+                    </div>
+                    <div class="d-inline">
+                        <button class="btn btn-secondary dropdown-toggle" id="algo-btn" type="button"
+                            data-bs-toggle="dropdown">
+                            Algorithm
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item algo-sel" href="#" data-algo="DFS">DFS</a></li>
+                            <li><a class="dropdown-item algo-sel" href="#" data-algo="BFS">BFS</a></li>
+                            <li><a class="dropdown-item algo-sel" href="#" data-algo="Greedy">Greedy</a></li>
+                            <li><a class="dropdown-item algo-sel" href="#" data-algo="Dijkstra's">Dijkstra's</a></li>
+                            <li><a class="dropdown-item algo-sel" href="#" data-algo="A*">A*</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,7 +77,7 @@
 
     <!-- Footer Section -->
     <footer>
-        <div class="container text-center pt-1">
+        <div class="container text-center mt-4">
             <a href="https://github.com/KevinLiTian/PathfindingVisualizer" class="social_icon--link" target="_blank">
                 <i class="fab fa-github"></i>
             </a>
